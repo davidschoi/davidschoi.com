@@ -19,7 +19,7 @@
   7. Technical Skills Style
   8. Work Experience Style
   9. Education Style
-  10. Protfolio Style
+  10. Portfolio Style
   11. Get in tuch Style
   12. Footer Style
   13. Responsive style
@@ -53,7 +53,7 @@ a {
 
 /*----------------------------------------------------
  2. Document Setup
-------------------------------------------------------*/
+ ------------------------------------------------------*/
 .wrapper{
   width:100%;
 }
@@ -141,8 +141,8 @@ h4.subHeading{
 
 /*----------------------------------------------------
  3. Header Part
-------------------------------------------------------*/
-header{
+ ------------------------------------------------------*/
+ header{
   position:relative;
 }
 .banner{
@@ -161,7 +161,7 @@ header{
   max-width:960px;
   border:1px solid #fff;
   background: rgba(0, 0, 0, 0.2);
-   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2000000, endColorstr=#b2000000);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#b2000000, endColorstr=#b2000000);
   zoom: 1;
 }
 .bannerText h1{
@@ -186,14 +186,14 @@ header{
 
 /*------------------------------------
   3.1 Slide show background control
---------------------------------------*/ 
-.bannerPart{
-  background:#1b1f2b;
-}
-.bannerPart img{
-  opacity:0.2;
-  filter:alpha(opacity=20); /* For IE8 and earlier */
-}
+  --------------------------------------*/ 
+  .bannerPart{
+    background:#1b1f2b;
+  }
+  .bannerPart img{
+    opacity:0.2;
+    filter:alpha(opacity=20); /* For IE8 and earlier */
+  }
 
 
 
@@ -201,8 +201,8 @@ header{
 
 /*---------------------------------------------------------------------------------
  4. Background slider CSS style
--------------------------------------------------------------------------------*/
-.ri-grid {
+ -------------------------------------------------------------------------------*/
+ .ri-grid {
   margin:0px auto;
   position: relative;
   height: auto;
@@ -322,16 +322,16 @@ header{
 
 /*----------------------------------------------------
  5. Menu Style
-------------------------------------------------------*/
-.isStuck{
-    left:0px;
-    width:100%;
+ ------------------------------------------------------*/
+ .isStuck{
+  left:0px;
+  width:100%;
 }
 .menu{
-   margin-top:0px;
-   position: static;
-   left:0px;
-   right:0px;
+ margin-top:0px;
+ position: static;
+ left:0px;
+ right:0px;
 }
 
 .navwrapper .container{
@@ -439,9 +439,9 @@ header{
 
 /*----------------------------------------------------
  6. About me Style
-------------------------------------------------------*/
+ ------------------------------------------------------*/
 
-.aboutme{
+ .aboutme{
   background:#00bdbd;
   color:#fff;
   position:relative;
@@ -478,8 +478,8 @@ header{
 
 /*----------------------------------------------------
  7. Technical Skills Style
-------------------------------------------------------*/
-.addspace{
+ ------------------------------------------------------*/
+ .addspace{
   height:60px;
   background:#eeeeee;
 }
@@ -574,8 +574,8 @@ header{
 
 /*----------------------------------------------------
  8. Work Experience Style
-------------------------------------------------------*/
-.exprience{
+ ------------------------------------------------------*/
+ .exprience{
   background:#fff;
 }
 .exprience .container{
@@ -616,7 +616,7 @@ header{
   padding:40px 0 40px 0;
   
   -webkit-border-radius: 50%;
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 
@@ -651,8 +651,8 @@ header{
 
 /*----------------------------------------------------
  9. Education Style
-------------------------------------------------------*/
-.education{
+ ------------------------------------------------------*/
+ .education{
   background:#eeeeee;
 }
 .education .container{
@@ -693,21 +693,21 @@ header{
 
 
 /*----------------------------------------------------
- 10. Protfolio Style
-------------------------------------------------------*/
-.protfolio{
+ 10. Portfolio Style
+ ------------------------------------------------------*/
+ .portfolio{
   background:#2bb3dd;
 }
-.protfolio .container{
+.portfolio .container{
   padding-top:85px ;
   padding-bottom:90px ;
 }
 
-.protfolio .heading p{
+.portfolio .heading p{
   padding-bottom:41px;
 }
 
-.protfolio h4{
+.portfolio h4{
   font-weight:700;
 }
 
@@ -777,9 +777,9 @@ ul.portfolioContainer li .lightCon{
   overflow:hidden;
 }
 ul.portfolioContainer li img{
-   width:100%;
-   height:auto;
-   display:block;
+ width:100%;
+ height:auto;
+ display:block;
 }
 
 span.hoverBox{
@@ -829,7 +829,6 @@ span.hoverBox .zoom{
   color:#fff;
   position: relative;
   left:-150%;
-  /*top:40%;*/
   text-align:center;
   line-height:50px;
   display: block;
@@ -854,7 +853,6 @@ span.hoverBox .linKed{
   color:#fff;
   position: relative;
   right:-150%;
-  /*top:40%;*/
   text-align:center;
   line-height:52px;
   display: block;
@@ -863,6 +861,7 @@ span.hoverBox .linKed{
   transition-duration: 0.2s;
   -webkit-transition-duration: 0.2s;
 }
+
 ul.portfolioContainer li:hover span.hoverBox .linKed{
   visibility:visible;
   right:0%;
@@ -871,37 +870,32 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
   -webkit-transition-duration: 0.2s;
 }
 
-
 .isotope-item {
-    z-index: 2;
+  z-index: 2;
 }
 .isotope-hidden.isotope-item {
-    pointer-events: none;
-    z-index: 1;
+  pointer-events: none;
+  z-index: 1;
 }
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
-
-    -webkit-transition-duration: 0.8s;
-    -moz-transition-duration: 0.8s;
-    transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  transition-duration: 0.8s;
 }
 .isotope {
-    -webkit-transition-property: height, width;
-    -moz-transition-property: height, width;
-    transition-property: height, width;
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  transition-property: height, width;
 }
 .isotope .isotope-item {
   padding:0;
   
-    -webkit-transition-property: -webkit-transform, opacity;
-    -moz-transition-property: -moz-transform, opacity;
-    transition-property: transform, opacity;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
 }
-
-
-
 
 .abc{
   position: absolute;
@@ -943,9 +937,9 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 
 /*----------------------------------------------------
  11. Get in tuch Style
-------------------------------------------------------*/
+ ------------------------------------------------------*/
 
-.contact{
+ .contact{
   background:#fff;
 }
 .contact .container{
@@ -1084,8 +1078,8 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 
 /*----------------------------------------------------
  12. Footer Style
-------------------------------------------------------*/
-.footer{
+ ------------------------------------------------------*/
+ .footer{
   background:#00bdbd;
 }
 .footer .container{
@@ -1108,7 +1102,7 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
   height:42px !important;
   
   -webkit-border-radius: 50%;
-    border-radius: 50%;
+  border-radius: 50%;
 }
 .footer ul li:hover{
   background:#0a9f9f ;
@@ -1128,12 +1122,12 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 
 
 
-  
+
 /*---------------------------------------------------------------------------------
  13. Responsive style
--------------------------------------------------------------------------------*/
+ -------------------------------------------------------------------------------*/
 
-@media screen and (min-width: 1200px) {
+ @media screen and (min-width: 1200px) {
   .workYear{
     width:140px;
     height:140px;
@@ -1327,10 +1321,3 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
     
   }
 }
-
-
-
-
-
-
-
