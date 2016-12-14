@@ -526,89 +526,15 @@ ul.portfolioContainer li {
   margin: 0;
   cursor: pointer;
 }
-ul.portfolioContainer li .lightCon {
-  display: block;
-  margin: 3px 3px 4px 4px;
-  position: relative;
-  overflow: hidden;
-}
 ul.portfolioContainer li img {
- width: 100%;
- height: auto;
- display: block;
-}
-span.hoverBox {
-  visibility: hidden;
+  border-radius: 25px;
+  display: block;
+  height: auto;
+  padding: 10px;
   width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  background: rgba(0, 0, 0, 0.1);
 }
-ul.portfolioContainer li: hover span.hoverBox {
-  visibility: visible;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-}
-span.hoverBox a {
-  line-height: 42px;
-}
-span.hoverBox .smallIcon {
-  width: 62px;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -47px;
-  margin-top: -21px;
-}
-span.hoverBox .zoom {
-  visibility: hidden;
-  width: 42px;
-  height: 42px;
-  background: #ff675f;
-  color: #fff;
-  position: relative;
-  left: -150%;
-  text-align: center;
-  line-height: 50px;
-  display: block;
-  float: left;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-}
-ul.portfolioContainer li: hover span.hoverBox .zoom {
-  visibility: visible;
-  left: 0;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-}
-span.hoverBox .linKed {
-  visibility: hidden;
-  width: 42px;
-  height: 42px;
-  background: #313131;
-  color: #fff;
-  position: relative;
-  right: -150%;
-  text-align: center;
-  line-height: 52px;
-  display: block;
-  float: right;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-}
-ul.portfolioContainer li: hover span.hoverBox .linKed {
-  visibility: visible;
-  right: 0%;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
+ul.portfolioContainer li img.mastercard {
+  background: #fff;
 }
 .isotope-item {
   z-index: 2;
@@ -668,7 +594,7 @@ ul.portfolioContainer li: hover span.hoverBox .linKed {
 }
 
 /*----------------------------------------------------
- 11. Get in tuch Style
+ 11. Get in touch Style
  ------------------------------------------------------*/
  .contact {
   background: #fff;
@@ -714,12 +640,6 @@ ul.portfolioContainer li: hover span.hoverBox .linKed {
   font-weight: 600;
   text-transform: uppercase;
   padding-bottom: 15px;
-}
-.contactDetails p {
-  color: #93959c;
-  font-size: 13px;
-  line-height: 19px;
-  padding-bottom: 14px;
 }
 .contactDetails p a {
   color: #93959c;

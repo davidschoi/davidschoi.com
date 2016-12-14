@@ -45,16 +45,16 @@
   });
 
   // for portfolio lightbox jquery
-  jQuery(function($) {
-    var $chosenSheet,
-    $stylesheets = $( "a[id^=theme-]" );
+  // $(function($) {
+  //   var $chosenSheet,
+  //   $stylesheets = $( "a[id^=theme-]" );
 
-    // run rlightbox
-    $(".lb").rlightbox();
-    $(".lb_title-overwritten").rlightbox({overwriteTitle: true});
-  });
+  //   // run rlightbox
+  //   $(".lb").rlightbox();
+  //   $(".lb_title-overwritten").rlightbox({overwriteTitle: true});
+  // });
 
-  // for skill chat jquery
+  // for skill chart jquery
   $(document).ready(function(e) {
     var index = 0;
     $(document).scroll(function(){
