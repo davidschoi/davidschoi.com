@@ -1,7 +1,9 @@
 # davidschoi
 My Portfolio
 
-## Todo
-* [ ] Migrate to React, Vue, or Angular
-* [ ] Use TailwindCSS or Styled Components
-* [ ] Add serverless backend
+## To Do
+* [ ] Simplify contact me to use Typeform or Google Contact
+* [ ] Add resume.pdf
+* [ ] Redesign using React, Gatsby
+* [ ] Use TailwindCSS or Styled Components for styling
+* [ ] Setup serverless backend?
