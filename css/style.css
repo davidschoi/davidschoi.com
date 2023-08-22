@@ -23,7 +23,9 @@
 body {
   color: #fff;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
   position: relative;
   background: #000;
   width: 100%;
@@ -60,9 +62,6 @@ a {
 
 p {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 400;
   padding-bottom: 22px;
   margin: 0;
 }
@@ -76,11 +75,11 @@ h1 {
 }
 h2 {
   font-family: 'Open Sans', sans-serif;
-  font-size:36px;
+  font-size: 36px;
   font-weight: bold;
-  line-height:38px;
+  line-height: 38px;
   padding-bottom: 0;
-  text-transform:uppercase;
+  text-transform: uppercase;
   margin: 0;
 }
 h3 {
@@ -274,7 +273,7 @@ header {
   padding: 16px 22px;
   display: inline-block;
 }
-.btnDownload: hover {
+.btnDownload:hover {
   background: #373d4c;
   color: #CCCCCC;
   text-decoration: none;
@@ -386,7 +385,7 @@ header {
   border-left: solid 1px #eaeaea;
   padding-bottom: 47px;
 }
-.workDetails: last-child .rightArea {
+.workDetails:last-child .rightArea {
   padding-bottom: 0;
 }
 .workYear {
