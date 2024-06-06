@@ -111,4 +111,43 @@
     }
     theWindow.resize(resizeBg).trigger("resize");
   });
+
+  //Experience
+  function getExperienceMessage(startYear) {
+    const currentYear = new Date().getFullYear();
+    const years = currentYear - startYear;
+    return `${years} year${years !== 1 ? 's' : ''}`;
+  }
+
+  const skills = [
+    { name: 'JavaScript', startYear: 2012, proficiency: 90 },
+    { name: 'CSS/Sass', startYear: 2012, proficiency: 90 },
+    { name: 'HTML', startYear: 2012, proficiency: 90 },
+    { name: 'React.js', startYear: 2017, proficiency: 90 },
+    { name: 'TypeScript', startYear: 2016, proficiency: 80 },
+    { name: 'Next.js', startYear: 2018, proficiency: 80 },
+    { name: 'Styled Components', startYear: 2016, proficiency: 80 },
+    { name: 'Node.js', startYear: 2016, proficiency: 70 },
+    { name: 'GraphQL', startYear: 2017, proficiency: 60 }
+  ];
+
+  $(document).ready(function() {
+    const $skillsContainer = $('#skillsContainer');
+
+    skills.forEach(skill => {
+      const experienceMessage = getExperienceMessage(skill.startYear);
+      const skillHTML = `
+        <div class="col-sm-4 skillsArea">
+          <div class="skills"> 
+            <span class="chart skillBg" data-percent="${skill.proficiency}"> 
+              <span class="percent"></span> 
+            </span>
+            <h4>${skill.name}</h4>
+            <p>${experienceMessage}</p>
+          </div>
+        </div>
+      `;
+      $skillsContainer.append(skillHTML);
+    });
+  });
 }(jQuery));
