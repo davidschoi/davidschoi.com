@@ -1,12 +1,11 @@
 (function($) {
   "use strict";
 
-  (function($) {
-    $(function() {
-      $('#loopedSlider').prepend("<a href='#' class='previous'>&lt;</a><a href='#' class='next'>&gt;</a>");
-      $('#loopedSlider').loopedSlider({
-        autoHeight: 500
-      });
+  // initialize loopedSlider on page load
+  $(function() {
+    $('#loopedSlider').prepend("<a href='#' class='previous'>&lt;</a><a href='#' class='next'>&gt;</a>");
+    $('#loopedSlider').loopedSlider({
+      autoHeight: 500
     });
   });
 
