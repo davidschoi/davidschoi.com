@@ -12,5 +12,8 @@
   "type": "commonjs",
   "devDependencies": {
     "jest": "^29.0.0"
+  },
+  "dependencies": {
+    "jest": "^29.0.0"
   }
 }
