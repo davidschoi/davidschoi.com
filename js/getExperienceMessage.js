@@ -4,4 +4,8 @@ function getExperienceMessage(startYear) {
   return `${years} year${years !== 1 ? 's' : ''}`;
 }
 
-module.exports = getExperienceMessage;
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = getExperienceMessage;
+} else {
+  window.getExperienceMessage = getExperienceMessage;
+}

@@ -20,8 +20,6 @@
     <!--font-family: 'Open Sans', sans-serif;-->
     <!-- font css style-->
     <link rel="stylesheet" href="css/font-awesome.css">
-    <!--for portfolio lightbox -->
-    <link type="text/css" rel="stylesheet" id="theme" href="css/jquery-ui-1.8.16.custom.css">
     <!--for slider style-->
     <noscript>
     <link rel="stylesheet" type="text/css" href="css/fallback.css" />
@@ -295,56 +293,7 @@
     <!--wrapper end-->
     <!--modernizr js-->
     <script type="text/javascript" src="js/modernizr.custom.26633.js"></script>
-    <!--jquery min js-->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery.gridrotator.js"></script>
-    <!--for custom jquery-->
-    <script src="js/custom.js"></script>
-    <!--for placeholder jquery-->
-    <script type="text/javascript" src="js/jquery.placeholder.js"></script>
-    <!--for menu jquery-->
-    <script type="text/javascript" src="js/stickUp.js"></script>
-    <script type="text/javascript">
-    jQuery(function($) {
-      $(document).ready( function() {
-        //enabling stickUp on the '.navbar-wrapper' class
-        $('.navbar-wrapper').stickUp({
-      		parts: {
-      		  0: 'banner',
-      		  1: 'aboutme',
-      		  2: 'technical',
-      		  3: 'experience',
-      		  4: 'education',
-      		  6: 'contact'
-      		},
-      		itemClass: 'menuItem',
-      		itemHover: 'active',
-      		topMargin: 'auto'
-        });
-      });
-
-      $(".navbar.navbar-inverse.navbar-static-top a").click(function() {
-        $(".navbar-collapse").addClass("hideClass");
-      });
-
-      $(".navbar.navbar-inverse.navbar-static-top a").click(function() {
-        $(".navbar-collapse").addClass("collapse");
-      });
-
-      $(".navbar.navbar-inverse.navbar-static-top a").click(function() {
-        $(".navbar-collapse").removeClass("in");
-      });
-
-      $(".navbar-toggle").click(function() {
-        $(".navbar-collapse").removeClass("hideClass");
-      });
-    });
-    </script>
-    <!--for skill chat jquery-->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.easypiechart.js"></script>
-    <!--contact form js-->
-    <script type="text/javascript" src="js/jquery.contact.js"></script>
+    <script src="js/getExperienceMessage.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
