@@ -210,7 +210,8 @@ header {
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   margin-top: 0;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 15;
   background: #262b37;
 }
@@ -334,10 +335,17 @@ header {
   margin-bottom: 26px;
   text-align: center;
 }
-.chart canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
+.chart svg {
+  width: 100%;
+  height: 100%;
+}
+.progress-ring__circle {
+  stroke: #ff675f;
+  stroke-width: 8;
+  fill: transparent;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s ease-out;
 }
 .percent {
   display: inline-block;
