@@ -1,129 +1,76 @@
-// Vanilla JS replacement for former jQuery features
-(function() {
+(function () {
   'use strict';
 
-  // skills data
   const skills = [
-    { name: 'JavaScript', startYear: 2012, proficiency: 90 },
-    { name: 'CSS/Sass', startYear: 2012, proficiency: 90 },
-    { name: 'HTML', startYear: 2012, proficiency: 90 },
-    { name: 'React.js', startYear: 2017, proficiency: 90 },
-    { name: 'TypeScript', startYear: 2016, proficiency: 80 },
-    { name: 'Next.js', startYear: 2018, proficiency: 80 },
-    { name: 'Styled Components', startYear: 2016, proficiency: 80 },
-    { name: 'Node.js', startYear: 2016, proficiency: 70 },
-    { name: 'GraphQL', startYear: 2017, proficiency: 60 }
+    { name: 'JavaScript', startYear: 2012 },
+    { name: 'TypeScript', startYear: 2016 },
+    { name: 'React', startYear: 2017 },
+    { name: 'Next.js', startYear: 2018 },
+    { name: 'Node.js', startYear: 2016 },
+    { name: 'GraphQL', startYear: 2017 },
+    { name: 'CSS / Sass', startYear: 2012 },
+    { name: 'HTML', startYear: 2012 },
+    { name: 'Styled Components', startYear: 2016 }
   ];
 
-  function createSkillElement(skill) {
-    const experienceMessage = window.getExperienceMessage(skill.startYear);
+  function renderSkills(container) {
+    const fragment = document.createDocumentFragment();
+    skills.forEach((skill) => {
+      const card = document.createElement('div');
+      card.className = 'skillsArea';
 
-    const col = document.createElement('div');
-    col.className = 'col-sm-4 skillsArea';
+      const heading = document.createElement('h4');
+      heading.textContent = skill.name;
 
-    const wrapper = document.createElement('div');
-    wrapper.className = 'skills';
+      const meta = document.createElement('p');
+      meta.textContent = window.getExperienceMessage(skill.startYear);
 
-    const svgNS = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(svgNS, 'svg');
-    svg.classList.add('progress-ring');
-    svg.setAttribute('width', '120');
-    svg.setAttribute('height', '120');
-
-    const radius = 52;
-    const circumference = 2 * Math.PI * radius;
-    const circle = document.createElementNS(svgNS, 'circle');
-    circle.classList.add('progress-ring__circle');
-    circle.setAttribute('r', radius);
-    circle.setAttribute('cx', '60');
-    circle.setAttribute('cy', '60');
-    circle.setAttribute('stroke-dasharray', circumference);
-    circle.setAttribute('stroke-dashoffset', circumference);
-    circle.dataset.circumference = circumference;
-    circle.dataset.proficiency = skill.proficiency;
-    svg.appendChild(circle);
-
-    const percent = document.createElement('span');
-    percent.className = 'percent';
-    percent.textContent = skill.proficiency;
-
-    const h4 = document.createElement('h4');
-    h4.textContent = skill.name;
-
-    const p = document.createElement('p');
-    p.textContent = experienceMessage;
-
-    wrapper.appendChild(svg);
-    wrapper.appendChild(percent);
-    wrapper.appendChild(h4);
-    wrapper.appendChild(p);
-    col.appendChild(wrapper);
-
-    return { col, circle };
+      card.appendChild(heading);
+      card.appendChild(meta);
+      fragment.appendChild(card);
+    });
+    container.appendChild(fragment);
   }
 
-  function animateCircles() {
-    document.querySelectorAll('.progress-ring__circle').forEach(circle => {
-      const circumference = parseFloat(circle.dataset.circumference);
-      const percent = parseFloat(circle.dataset.proficiency);
-      const offset = circumference - percent / 100 * circumference;
-      circle.style.strokeDashoffset = offset;
-    });
+  function setYear() {
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Build skills section
-    const skillsContainer = document.getElementById('skillsContainer');
-    if (skillsContainer) {
-      const fragments = document.createDocumentFragment();
-      skills.forEach(skill => {
-        const { col } = createSkillElement(skill);
-        fragments.appendChild(col);
-      });
-      skillsContainer.appendChild(fragments);
-    }
+  function highlightActiveLink() {
+    const links = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
 
-    // smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const id = this.getAttribute('href').slice(1);
-        const target = document.getElementById(id);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
+    const linkById = new Map(
+      links
+        .map((link) => [link.getAttribute('href').slice(1), link])
+        .filter(([id]) => id && document.getElementById(id))
+    );
 
-    // navbar collapse handling
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navToggle = document.querySelector('.navbar-toggle');
-    document.querySelectorAll('.navbar.navbar-inverse.navbar-static-top a').forEach(link => {
-      link.addEventListener('click', function() {
-        if (navbarCollapse) {
-          navbarCollapse.classList.add('hideClass', 'collapse');
-          navbarCollapse.classList.remove('in');
-        }
-      });
-    });
-    if (navToggle && navbarCollapse) {
-      navToggle.addEventListener('click', function() {
-        navbarCollapse.classList.remove('hideClass');
-      });
-    }
+    const setActive = (id) => {
+      links.forEach((l) => l.removeAttribute('aria-current'));
+      const active = linkById.get(id);
+      if (active) active.setAttribute('aria-current', 'true');
+    };
 
-    // animate skills when section enters view
-    const technicalSection = document.getElementById('technical');
-    if (technicalSection) {
-      const observer = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          animateCircles();
-          observer.disconnect();
-        }
-      }, { threshold: 0.3 });
-      observer.observe(technicalSection);
-    } else {
-      animateCircles();
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+          .slice(0, 1)
+          .forEach((e) => setActive(e.target.id));
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    linkById.forEach((_, id) => observer.observe(document.getElementById(id)));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('skillsContainer');
+    if (container) renderSkills(container);
+    setYear();
+    highlightActiveLink();
   });
 })();
