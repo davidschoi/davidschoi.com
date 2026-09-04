@@ -4,9 +4,8 @@ export const linkedin = 'https://linkedin.com/in/greatgumz';
 export const resumePdf = '/David-S-Choi-Resume.pdf';
 
 export const name = 'David S Choi';
-export const role = 'Staff Product Engineer';
-export const company = 'Wander';
-export const location = 'Orange County, CA';
+export const role = 'Software Engineer';
+export const location = 'Southern California';
 
 export const lede =
   'I architect consumer web products at scale. Using AI as a force multiplier, not a replacement for engineering judgement.';
