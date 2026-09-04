@@ -9,7 +9,6 @@ const timeline = [
     year: '1988',
     kind: 'life',
     title: 'Born',
-    detail: 'Southern California, and never really left',
   },
   {
     year: '2011',
@@ -37,8 +36,7 @@ const timeline = [
   {
     year: '2017',
     kind: 'life',
-    title: 'Married Jean',
-    detail: 'Serra Plaza, San Juan Capistrano',
+    title: 'Married',
   },
   {
     year: '2018',
@@ -74,22 +72,6 @@ const timeline = [
     year: '2024',
     kind: 'life',
     title: 'Colette',
-    detail: (
-      <>
-        Her site, and her sister's, live at{' '}
-        <a className="link" href="https://choifam.com">
-          choifam.com
-        </a>
-      </>
-    ),
-    detailShort: (
-      <>
-        Their sites:{' '}
-        <a className="link" href="https://choifam.com">
-          choifam.com
-        </a>
-      </>
-    ),
   },
   {
     year: '2024',
