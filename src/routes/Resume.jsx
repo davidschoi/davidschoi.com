@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer.jsx';
 import {
   education,
   experience,
@@ -6,7 +7,7 @@ import {
   skills,
   summary,
 } from '../data/resume.js';
-import { email, github, linkedin, name, resumePdf } from '../data/site.js';
+import { name, resumePdf } from '../data/site.js';
 import './Resume.css';
 
 function Job({ job }) {
@@ -90,20 +91,7 @@ export default function Resume() {
           <p className="resume__interests">{interests}</p>
         </section>
 
-        <footer className="resume__footer">
-          <a className="resume__email" href={`mailto:${email}`}>
-            {email}
-          </a>
-          <span className="resume__slash" aria-hidden="true">
-            /
-          </span>
-          <a className="link" href={linkedin}>
-            LinkedIn
-          </a>
-          <a className="link" href={github}>
-            GitHub
-          </a>
-        </footer>
+        <Footer primary={{ to: '/', label: '← Home' }} ruled />
       </div>
     </main>
   );

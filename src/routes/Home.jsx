@@ -1,17 +1,9 @@
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer.jsx';
 import Timeline from '../components/Timeline.jsx';
-import timeline from '../data/timeline.jsx';
+import timeline from '../data/timeline.js';
 import portrait from '../assets/david-illustration.png';
-import {
-  colophon,
-  company,
-  email,
-  github,
-  lede,
-  linkedin,
-  location,
-  role,
-} from '../data/site.js';
+import { colophon, company, lede, location, role } from '../data/site.js';
 import './Home.css';
 
 export default function Home() {
@@ -51,33 +43,8 @@ export default function Home() {
 
         <p className="home__colophon">{colophon}</p>
 
-        <nav className="home__links" aria-label="Elsewhere">
-          <Link className="home__resume" to="/resume">
-            Resume →
-          </Link>
-          <span className="home__slash" aria-hidden="true">
-            /
-          </span>
-          <span className="home__externals">
-            <a className="link" href={github}>
-              GitHub
-            </a>
-            <a className="link" href={linkedin}>
-              LinkedIn
-            </a>
-            <a className="link" href={`mailto:${email}`}>
-              Email
-            </a>
-          </span>
-        </nav>
+        <Footer primary={{ to: '/resume', label: 'Resume →' }} />
 
-        <p className="home__archive">
-          This site, 2026. The{' '}
-          <a className="link" href="/archive/">
-            2016 version
-          </a>{' '}
-          is still standing.
-        </p>
       </div>
     </main>
   );

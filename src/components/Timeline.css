@@ -59,11 +59,6 @@
   margin-top: 3px;
 }
 
-.tl .link {
-  text-decoration: none;
-  border-bottom: 1px solid var(--hairline);
-}
-
 @media (max-width: 640px) {
   .tl {
     margin-top: 34px;

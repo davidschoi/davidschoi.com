@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../src/App.jsx';
-import timeline from '../src/data/timeline.jsx';
+import timeline from '../src/data/timeline.js';
 import { experience } from '../src/data/resume.js';
 
 function renderAt(path) {
@@ -63,5 +63,32 @@ describe('unknown routes', () => {
   test('fall through to the 404 page rather than a blank screen', () => {
     renderAt('/nope');
     expect(screen.getByRole('heading', { name: /Nothing here/ })).toBeTruthy();
+  });
+});
+
+describe('footer', () => {
+  test('is shared, and its primary link points the other way on each page', () => {
+    const home = renderAt('/');
+    expect(
+      home.container.querySelector('.footer__primary').getAttribute('href')
+    ).toBe('/resume');
+    home.unmount();
+
+    const resume = renderAt('/resume');
+    expect(
+      resume.container.querySelector('.footer__primary').getAttribute('href')
+    ).toBe('/');
+  });
+
+  test('opens GitHub, LinkedIn and Email in a new tab, safely', () => {
+    renderAt('/');
+    for (const name of ['GitHub', 'LinkedIn', 'Email']) {
+      const a = screen.getByRole('link', { name });
+      expect(a.getAttribute('target')).toBe('_blank');
+      expect(a.getAttribute('rel')).toContain('noopener');
+    }
+    expect(screen.getByRole('link', { name: 'GitHub' }).getAttribute('href')).toBe(
+      'https://github.com/davidschoi'
+    );
   });
 });

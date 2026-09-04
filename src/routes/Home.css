@@ -1,5 +1,4 @@
 .home {
-  max-width: 560px;
   padding: 80px 40px 64px;
   color: var(--ink);
 }
@@ -75,51 +74,8 @@
   text-wrap: pretty;
 }
 
-.home__links {
-  margin-top: 36px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: baseline;
-  font-size: 14px;
-}
-
-.home__resume {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.home__slash {
-  color: var(--slash);
-}
-
-.home__externals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: baseline;
-}
-
-/* Quiet footnote to the archived 2016 site. */
-.home__archive {
-  margin: 44px 0 0;
-  font-family: var(--mono);
-  font-size: 11px;
-  line-height: 1.7;
-  letter-spacing: 0.03em;
-  color: var(--faint);
-}
-
-.home .link {
-  text-decoration: none;
-  border-bottom: 1px solid var(--hairline);
-}
-
 @media (max-width: 640px) {
   .home {
-    max-width: none;
     padding: 44px 24px 48px;
   }
 
@@ -153,46 +109,10 @@
   .masthead__lede {
     font-size: 18px;
     line-height: 1.5;
-    max-width: none;
   }
 
   .home__colophon {
     margin-top: 28px;
     font-size: 14px;
-    max-width: none;
-  }
-
-  /* Stack the nav and give every target a 44px touch box. */
-  .home__links {
-    margin-top: 28px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .home__resume {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid var(--rule);
-  }
-
-  .home__slash {
-    display: none;
-  }
-
-  .home__externals {
-    gap: 20px;
-  }
-
-  .home__externals .link {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-
-  .home__archive {
-    margin-top: 32px;
-    font-size: 10px;
   }
 }

@@ -21,8 +21,8 @@ npm run preview  # serve dist/ locally
 ```
 index.html            app shell
 src/routes/           Home, Resume, NotFound (one CSS file each)
-src/components/       Timeline
-src/data/             site.js, timeline.jsx, resume.js — all copy lives here
+src/components/       Footer (shared by every page), Timeline
+src/data/             site.js, timeline.js, resume.js — all copy lives here
 public/               favicons, resume PDF, archive/
 tests/                route smoke tests
 ```
@@ -30,9 +30,9 @@ tests/                route smoke tests
 Copy is data, not markup. To change a job, a date, or a line of the timeline,
 edit `src/data/` — nothing in `src/routes/` should need to move.
 
-The timeline carries two phrasings for some rows: `detail` and the terser
-`detailShort`, which CSS swaps in below 640px. That mirrors the two artboards
-in the design rather than reflowing one set of copy.
+The home timeline stays to a company and a job title per row — the resume page
+carries what each role actually involved, so repeating it there would just be
+two places to keep in sync.
 
 ## Deploying
 
@@ -53,6 +53,6 @@ The original portfolio (Bootstrap, later de-jQueried) lives on:
 
 - tagged **`v1-legacy`** — the last commit before this rebuild
 - served at **`/archive/`** — copied verbatim into `public/archive/`, no build
-  step, linked from the footer
+  step. Unlinked from the main pages; only the 404 page points at it.
 
 It is frozen. Don't fix its bugs.

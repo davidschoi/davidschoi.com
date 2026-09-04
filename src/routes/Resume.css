@@ -1,5 +1,4 @@
 .resume {
-  max-width: 680px;
   padding: 64px 40px 72px;
   color: var(--ink);
 }
@@ -213,40 +212,10 @@
   text-wrap: pretty;
 }
 
-/* — Footer — */
-
-.resume__footer {
-  margin-top: 56px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule-strong);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  align-items: baseline;
-  font-size: 14px;
-}
-
-.resume__email {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.resume__slash {
-  color: var(--slash);
-}
-
-.resume .link {
-  text-decoration: none;
-  border-bottom: 1px solid var(--hairline);
-}
-
 /* The design has no resume artboard below 860px; collapse the date gutter
    above the content and let everything run one column. */
 @media (max-width: 720px) {
   .resume {
-    max-width: none;
     padding: 44px 24px 56px;
   }
 
@@ -268,7 +237,6 @@
 
   .resume__summary {
     font-size: 18px;
-    max-width: none;
   }
 
   .resume__section {
@@ -305,6 +273,5 @@
   }
 
   .resume__interests {
-    max-width: none;
   }
 }
