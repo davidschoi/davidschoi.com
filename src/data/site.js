@@ -4,7 +4,7 @@ export const linkedin = 'https://linkedin.com/in/greatgumz';
 export const resumePdf = '/David-S-Choi-Resume.pdf';
 
 export const name = 'David S Choi';
-export const role = 'Software Engineer';
+export const role = 'Staff Product Engineer';
 export const location = 'Southern California';
 
 export const lede =

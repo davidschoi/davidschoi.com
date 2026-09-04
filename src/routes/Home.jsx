@@ -3,7 +3,7 @@ import Footer from '../components/Footer.jsx';
 import Timeline from '../components/Timeline.jsx';
 import timeline from '../data/timeline.js';
 import portrait from '../assets/david-illustration.png';
-import { colophon, company, lede, location, role } from '../data/site.js';
+import { colophon, lede, location, role } from '../data/site.js';
 import './Home.css';
 
 export default function Home() {
@@ -25,12 +25,9 @@ export default function Home() {
           />
 
           <div className="masthead__intro">
-            {/* Three stacked lines on desktop; the last two share a line at
-                390px, exactly as the mobile artboard has it. */}
+            {/* Stacked on desktop; one line at 390px. */}
             <p className="masthead__meta">
               {role}
-              <br />
-              {company}
               <br className="wide-only" />
               <span className="narrow-only"> · </span>
               {location}
