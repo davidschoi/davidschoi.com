@@ -1,6 +1,6 @@
 # davidschoi.com
 
-My portfolio. Vite + React + React Router, deployed to GitHub Pages at
+My portfolio. Vite + React + React Router, deployed on Vercel at
 [www.davidschoi.com](https://www.davidschoi.com/).
 
 Built from a Claude Design canvas (`David Choi Site.dc.html`) — the home page,
@@ -19,11 +19,11 @@ npm run preview  # serve dist/ locally
 ## Layout
 
 ```
-index.html            app shell; also restores deep links bounced by 404.html
+index.html            app shell
 src/routes/           Home, Resume, NotFound (one CSS file each)
 src/components/       Timeline
 src/data/             site.js, timeline.jsx, resume.js — all copy lives here
-public/               CNAME, favicons, resume PDF, 404.html, archive/
+public/               favicons, resume PDF, archive/
 tests/                route smoke tests
 ```
 
@@ -36,16 +36,16 @@ in the design rather than reflowing one set of copy.
 
 ## Deploying
 
-Pushes to `master` build and deploy via `.github/workflows/static.yml`.
+Vercel builds every push and PR. `vercel.json` sets the build command, the
+output directory, and one rewrite that hands unmatched paths to `index.html`
+so client-side routes like `/resume` resolve on a cold load. Real files win
+over that rewrite, which is why `/archive/` still serves the old site.
 
-**This requires Settings → Pages → Source set to "GitHub Actions."** The repo
-previously served the branch root directly; while that setting says "Deploy
-from a branch," the deploy step will fail.
+`.github/workflows/ci.yml` runs tests and a build on PRs — it does not deploy.
 
-GitHub Pages has no SPA fallback, so `public/404.html` rewrites unknown paths
-into `/?/<path>` and an inline script in `index.html` restores them before
-React Router mounts. Deep links like `/resume` work because of that pair — if
-you change one, change the other.
+GitHub Pages is no longer used. The repo served `master`'s root directly until
+this rebuild; that has to be turned off, since the root is now an unbuilt Vite
+shell.
 
 ## The 2016 site
 

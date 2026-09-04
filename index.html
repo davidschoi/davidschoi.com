@@ -32,30 +32,6 @@
       rel="stylesheet"
     />
 
-    <script>
-      // GitHub Pages has no SPA fallback: a deep link like /resume 404s.
-      // public/404.html stashes the path as a query string and bounces here;
-      // this restores the real URL before React Router ever reads it.
-      (function () {
-        var q = window.location.search;
-        if (q.charAt(1) === '/') {
-          var decoded = q
-            .slice(1)
-            .split('&')
-            .map(function (part) {
-              return part.replace(/~and~/g, '&');
-            })
-            .join('?');
-          window.history.replaceState(
-            null,
-            null,
-            window.location.pathname.replace(/\/$/, '') +
-              decoded +
-              window.location.hash
-          );
-        }
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
