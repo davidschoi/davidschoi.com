@@ -1,0 +1,198 @@
+.home {
+  max-width: 560px;
+  padding: 80px 40px 64px;
+  color: var(--ink);
+}
+
+/* Desktop: the name runs full width, then the intro sits beside the portrait.
+   Mobile: the name and portrait share the top row, intro drops below. */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'title title'
+    'intro portrait';
+  align-items: start;
+  gap: 24px 28px;
+}
+
+.masthead__name {
+  grid-area: title;
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+
+.masthead__break {
+  display: none;
+}
+
+.masthead__portrait {
+  grid-area: portrait;
+  width: 124px;
+  height: auto;
+  flex: none;
+  display: block;
+  /* Optically seats the drawing on the text baseline. */
+  margin-bottom: -6px;
+}
+
+.masthead__intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.masthead__meta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  color: var(--muted-mono);
+}
+
+.masthead__lede {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-body);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+.home__colophon {
+  margin: 36px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.home__links {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: baseline;
+  font-size: 14px;
+}
+
+.home__resume {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.home__slash {
+  color: var(--slash);
+}
+
+.home__externals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: baseline;
+}
+
+/* Quiet footnote to the archived 2016 site. */
+.home__archive {
+  margin: 44px 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: var(--faint);
+}
+
+.home .link {
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+}
+
+@media (max-width: 640px) {
+  .home {
+    max-width: none;
+    padding: 44px 24px 48px;
+  }
+
+  .masthead {
+    grid-template-areas:
+      'title portrait'
+      'intro intro';
+    align-items: end;
+    gap: 20px 16px;
+  }
+
+  .masthead__name {
+    font-size: 40px;
+  }
+
+  .masthead__break {
+    display: inline;
+  }
+
+  .masthead__portrait {
+    width: 88px;
+    margin-bottom: -4px;
+  }
+
+  .masthead__meta {
+    font-size: 10px;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  .masthead__lede {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  .home__colophon {
+    margin-top: 28px;
+    font-size: 14px;
+    max-width: none;
+  }
+
+  /* Stack the nav and give every target a 44px touch box. */
+  .home__links {
+    margin-top: 28px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .home__resume {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--rule);
+  }
+
+  .home__slash {
+    display: none;
+  }
+
+  .home__externals {
+    gap: 20px;
+  }
+
+  .home__externals .link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .home__archive {
+    margin-top: 32px;
+    font-size: 10px;
+  }
+}
