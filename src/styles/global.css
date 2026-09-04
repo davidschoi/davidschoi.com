@@ -1,0 +1,145 @@
+/* Tokens lifted from the canvas design (David Choi Site.dc.html, turn 3). */
+:root {
+  /* Surfaces */
+  --canvas: #e8e5de; /* behind the sheet */
+  --paper: #f5f2eb; /* the sheet itself */
+
+  /* Ink */
+  --ink: #1c1a16;
+  --ink-body: #2e2a24;
+  --ink-soft: #3a3630;
+  --muted: #6b6558;
+  --muted-mono: #857f70;
+  --faint: #a29c8e;
+  --faint-alt: #918b7e;
+  --label: #8a8578;
+
+  /* Rules & marks */
+  --rule: #e2ded4;
+  --rule-strong: #ddd8cc;
+  --hairline: #c9c4b8;
+  --dot-hollow: #a8a296;
+  --dash: #c0b9a6;
+  --slash: #d4d1ca;
+
+  /* Accent — sienna */
+  --accent: #8a5a2b;
+  --accent-border: #ddcfb8;
+  --accent-bg: #efeadd;
+
+  /* Type */
+  --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --serif: Newsreader, Georgia, 'Times New Roman', serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* The canvas colour shows through above/below the sheet on overscroll. */
+  background: var(--canvas);
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* An inline link that sits in running text. */
+.link {
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* The sheet. Full-bleed on the page, centred column inside. */
+.sheet {
+  background: var(--paper);
+  min-height: 100vh;
+}
+
+/* One column width for every page — home, resume and 404 align exactly. */
+.sheet__inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .sheet__inner {
+    max-width: none;
+  }
+}
+
+/* Skip link — visible only once focused. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+}
+
+.skip:focus {
+  left: 8px;
+  top: 8px;
+  color: var(--paper);
+}
+
+/* Two copies of a line of prose: the long one for wide screens, the terse one
+   for narrow. Lets the markup match both artboards without a JS breakpoint. */
+.wide-only {
+  display: inline;
+}
+
+.narrow-only {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .wide-only {
+    display: none;
+  }
+
+  .narrow-only {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

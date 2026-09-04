@@ -1,0 +1,118 @@
+.home {
+  padding: 80px 40px 64px;
+  color: var(--ink);
+}
+
+/* Desktop: the name runs full width, then the intro sits beside the portrait.
+   Mobile: the name and portrait share the top row, intro drops below. */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'title title'
+    'intro portrait';
+  align-items: start;
+  gap: 24px 28px;
+}
+
+.masthead__name {
+  grid-area: title;
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+
+.masthead__break {
+  display: none;
+}
+
+.masthead__portrait {
+  grid-area: portrait;
+  width: 124px;
+  height: auto;
+  flex: none;
+  display: block;
+  /* Optically seats the drawing on the text baseline. */
+  margin-bottom: -6px;
+}
+
+.masthead__intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.masthead__meta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  color: var(--muted-mono);
+}
+
+.masthead__lede {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-body);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+.home__colophon {
+  margin: 36px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 640px) {
+  .home {
+    padding: 44px 24px 48px;
+  }
+
+  .masthead {
+    grid-template-areas:
+      'title portrait'
+      'intro intro';
+    align-items: end;
+    gap: 20px 16px;
+  }
+
+  .masthead__name {
+    font-size: 40px;
+  }
+
+  .masthead__break {
+    display: inline;
+  }
+
+  .masthead__portrait {
+    width: 88px;
+    margin-bottom: -4px;
+  }
+
+  .masthead__meta {
+    font-size: 10px;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  .masthead__lede {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .home__colophon {
+    margin-top: 28px;
+    font-size: 14px;
+  }
+}
