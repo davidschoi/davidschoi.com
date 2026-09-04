@@ -43,7 +43,7 @@ over that rewrite, which is why `/archive/` still serves the old site.
 
 `.github/workflows/ci.yml` runs tests and a build on PRs — it does not deploy.
 
-GitHub Pages is no longer used. The repo served `master`'s root directly until
+GitHub Pages is no longer used. The repo served `main`'s root directly until
 this rebuild; that has to be turned off, since the root is now an unbuilt Vite
 shell.
 

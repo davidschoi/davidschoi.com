@@ -1,9 +1,9 @@
-# Deploys are Vercel's job; this just keeps master and every PR honest.
+# Deploys are Vercel's job; this just keeps main and every PR honest.
 name: CI
 
 on:
   push:
-    branches: ['master']
+    branches: ['main']
   pull_request:
   workflow_dispatch:
 
