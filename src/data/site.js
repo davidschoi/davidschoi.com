@@ -8,7 +8,7 @@ export const role = 'Software Engineer';
 export const location = 'Southern California';
 
 export const lede =
-  'I architect consumer web products at scale. Using AI as a force multiplier, not a replacement for engineering judgement.';
+  'I build consumer web products. I use AI heavily and review everything it writes.';
 
 export const colophon =
-  'Wife, two kids, and a pup named Morty. Basketball, puzzles, and a Señor Sisig spicy pork burrito with egg. Go Bears, go Lakers, and thank you to the man upstairs.';
+  'Wife, two kids, and our little pup. Basketball, puzzles, and a Señor Sisig spicy pork burrito with egg. Go Bears, go Lakers, and thank you to the man upstairs.';

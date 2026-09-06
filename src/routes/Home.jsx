@@ -3,7 +3,7 @@ import Footer from '../components/Footer.jsx';
 import Timeline from '../components/Timeline.jsx';
 import timeline from '../data/timeline.js';
 import portrait from '../assets/david-illustration.png';
-import { colophon, company, lede, location, role } from '../data/site.js';
+import { colophon, lede, location, role } from '../data/site.js';
 import './Home.css';
 
 export default function Home() {
@@ -29,8 +29,6 @@ export default function Home() {
                 390px, exactly as the mobile artboard has it. */}
             <p className="masthead__meta">
               {role}
-              <br />
-              {company}
               <br className="wide-only" />
               <span className="narrow-only"> · </span>
               {location}

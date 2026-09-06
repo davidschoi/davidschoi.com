@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../src/App.jsx';
 import timeline from '../src/data/timeline.js';
 import { experience } from '../src/data/resume.js';
+import { location, role } from '../src/data/site.js';
 
 function renderAt(path) {
   return render(
@@ -19,10 +20,10 @@ describe('home', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: /David\s*S Choi/ })
     ).toBeTruthy();
-    // Scoped to the masthead — the Wander timeline row names the role too.
+    // Scoped to the masthead — the timeline rows name roles too.
     const meta = document.querySelector('.masthead__meta');
-    expect(meta.textContent).toContain('Staff Product Engineer');
-    expect(meta.textContent).toContain('Wander');
+    expect(meta.textContent).toContain(role);
+    expect(meta.textContent).toContain(location);
   });
 
   test('renders every timeline entry, oldest first', () => {
