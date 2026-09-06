@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Home from './routes/Home.jsx';
 import Resume from './routes/Resume.jsx';
 import NotFound from './routes/NotFound.jsx';
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
