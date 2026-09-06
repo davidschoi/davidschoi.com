@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CompanyLink from '../components/CompanyLink.jsx';
 import Footer from '../components/Footer.jsx';
 import {
   education,
@@ -23,7 +24,9 @@ function Job({ job }) {
 
       <div className="job__body">
         <div>
-          <h3 className="job__company">{job.company}</h3>
+          <h3 className="job__company">
+            <CompanyLink name={job.company} />
+          </h3>
           <div className="job__role">{job.role}</div>
         </div>
 
@@ -46,7 +49,7 @@ export default function Resume() {
   return (
     <main className="sheet" id="main">
       <div className="sheet__inner resume">
-        <Link className="resume__back" to="/">
+        <Link className="resume__back link-quiet" to="/">
           ← {name}
         </Link>
 

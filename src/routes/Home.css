@@ -3,13 +3,14 @@
   color: var(--ink);
 }
 
-/* Desktop: the name runs full width, then the intro sits beside the portrait.
+/* Desktop: the portrait spans both rows, so it starts level with the name and
+   runs down alongside the intro.
    Mobile: the name and portrait share the top row, intro drops below. */
 .masthead {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-areas:
-    'title title'
+    'title portrait'
     'intro portrait';
   align-items: start;
   gap: 24px 28px;
@@ -31,12 +32,12 @@
 
 .masthead__portrait {
   grid-area: portrait;
-  width: 124px;
+  /* 148px renders 169px tall, which is exactly the height of the name and
+     intro stacked beside it. Retune if the lede ever grows a line. */
+  width: 148px;
   height: auto;
   flex: none;
   display: block;
-  /* Optically seats the drawing on the text baseline. */
-  margin-bottom: -6px;
 }
 
 .masthead__intro {
@@ -96,6 +97,7 @@
 
   .masthead__portrait {
     width: 88px;
+    /* Bottom-aligned here, so nudge it to seat on the name's baseline. */
     margin-bottom: -4px;
   }
 

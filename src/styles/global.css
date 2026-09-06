@@ -68,6 +68,33 @@ a:hover {
   border-bottom: 1px solid var(--hairline);
 }
 
+/* A link that reads as text until you reach for it: nothing at rest, then a
+   sienna rule wipes in left to right. Company names and the route links use it
+   so the pages keep their rhythm instead of stuttering with underlines.
+   The reduced-motion rule below collapses the wipe to an instant swap. */
+.link-quiet {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.link-quiet::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.link-quiet:hover::after {
+  transform: scaleX(1);
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -113,26 +140,6 @@ img {
   left: 8px;
   top: 8px;
   color: var(--paper);
-}
-
-/* Two copies of a line of prose: the long one for wide screens, the terse one
-   for narrow. Lets the markup match both artboards without a JS breakpoint. */
-.wide-only {
-  display: inline;
-}
-
-.narrow-only {
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .wide-only {
-    display: none;
-  }
-
-  .narrow-only {
-    display: inline;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

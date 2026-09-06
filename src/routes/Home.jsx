@@ -25,13 +25,8 @@ export default function Home() {
           />
 
           <div className="masthead__intro">
-            {/* Three stacked lines on desktop; the last two share a line at
-                390px, exactly as the mobile artboard has it. */}
             <p className="masthead__meta">
-              {role}
-              <br className="wide-only" />
-              <span className="narrow-only"> · </span>
-              {location}
+              {role} · {location}
             </p>
             <p className="masthead__lede">{lede}</p>
           </div>

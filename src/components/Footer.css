@@ -36,7 +36,9 @@
 @media (max-width: 640px) {
   .footer {
     flex-direction: column;
-    align-items: stretch;
+    /* Not `stretch` — the links size to their text so they read like the
+       resume's back link rather than full-width bars. */
+    align-items: flex-start;
     gap: 12px;
   }
 
@@ -44,16 +46,10 @@
     min-height: 44px;
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--rule);
   }
 
-  /* The ruled variant already has a rule overhead; don't draw a second. */
   .footer--ruled {
     margin-top: 40px;
-  }
-
-  .footer--ruled .footer__primary {
-    border-top: 0;
   }
 
   .footer__slash {

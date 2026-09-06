@@ -1,3 +1,4 @@
+import CompanyLink from './CompanyLink.jsx';
 import './Timeline.css';
 
 export default function Timeline({ items }) {
@@ -9,7 +10,7 @@ export default function Timeline({ items }) {
           <span className={`tl__dot tl__dot--${item.kind}`} aria-hidden="true" />
           <div>
             <div className={`tl__title tl__title--${item.kind}`}>
-              {item.title}
+              <CompanyLink name={item.title} />
             </div>
             {item.detail && <div className="tl__detail">{item.detail}</div>}
           </div>

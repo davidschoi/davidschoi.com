@@ -7,7 +7,7 @@ import './Footer.css';
 export default function Footer({ primary, ruled = false }) {
   return (
     <nav className={ruled ? 'footer footer--ruled' : 'footer'} aria-label="Elsewhere">
-      <Link className="footer__primary" to={primary.to}>
+      <Link className="footer__primary link-quiet" to={primary.to}>
         {primary.label}
       </Link>
 

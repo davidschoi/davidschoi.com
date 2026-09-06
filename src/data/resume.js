@@ -2,7 +2,7 @@
 // public/David-S-Choi-Resume.pdf and should be kept in step with this.
 
 export const summary =
-  "I'm a software engineering leader who architects consumer and B2B web products and stays in the code — tech plan, system design, and ownership through to production monitoring. Strong product sense, accessibility as a default, AI-assisted workflows held to real engineering rigor, and a bias toward action.";
+  "I build consumer and B2B web products and stay in the code: tech plan, system design, and ownership through to production monitoring. Accessibility by default, AI-assisted throughout.";
 
 export const experience = [
   {
