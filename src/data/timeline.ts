@@ -16,6 +16,7 @@ const timeline: TimelineEntry[] = [
     title: 'UC Berkeley',
     detail: 'Go Bears!',
   },
+  { year: '2011', kind: 'work', title: 'Sungevity', detail: 'Sales' },
   { year: '2012', kind: 'work', title: 'Switchfly', detail: 'Web Developer' },
   { year: '2016', kind: 'work', title: 'Solver', detail: 'Developer' },
   { year: '2017', kind: 'life', title: 'Married' },
