@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Job from '../components/Job.astro';
+import {
+  education,
+  experience,
+  interests,
+  skills,
+  summary,
+} from '../data/resume';
+import { name, resumePdf } from '../data/site';
+import '../styles/resume.css';
+---
+
+<Base
+  title={`Resume — ${name}`}
+  description={`The roles, the work and the stack behind ${name}.`}
+  path="/resume"
+>
+  <main class="sheet" id="main">
+    <div class="sheet__inner resume">
+      <a class="resume__back link-quiet" href="/">← {name}</a>
+
+      <div class="resume__head">
+        <h1 class="resume__title">Resume</h1>
+        <a class="resume__download" href={resumePdf} download>Download PDF ↓</a>
+      </div>
+
+      <p class="resume__summary">{summary}</p>
+
+      <section class="resume__section">
+        <h2 class="resume__label resume__label--stacked">Experience</h2>
+        {experience.map((job) => <Job job={job} />)}
+      </section>
+
+      <section class="resume__section resume__row">
+        <h2 class="resume__label">Skills</h2>
+        <div class="resume__skills">
+          {
+            skills.map((group) => (
+              <div class="skill">
+                <h3 class="skill__label">{group.label}</h3>
+                <p class="skill__body">{group.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="resume__section resume__row resume__row--ruled">
+        <h2 class="resume__label">Education</h2>
+        <div>
+          <div class="edu__school">{education.school}</div>
+          <div class="edu__detail">{education.detail}</div>
+        </div>
+      </section>
+
+      <section class="resume__section resume__row resume__row--ruled">
+        <h2 class="resume__label">Interests</h2>
+        <p class="resume__interests">{interests}</p>
+      </section>
+
+      <Footer primary={{ href: '/', label: '← Home' }} ruled />
+    </div>
+  </main>
+</Base>

@@ -1,0 +1,14 @@
+---
+import { companyUrls } from '../data/site';
+
+// A company name links to its home page only if site.ts has a URL for it, so
+// adding or dropping a link is a data change rather than a markup change.
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const url = companyUrls[name];
+---
+
+{url ? <a class="link-quiet" href={url} target="_blank" rel="noopener noreferrer">{name}</a> : name}

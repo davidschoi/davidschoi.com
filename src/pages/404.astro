@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { name } from '../data/site';
+import '../styles/notfound.css';
+---
+
+<Base title={`Not found — ${name}`} path="/404" noindex>
+  <main class="sheet" id="main">
+    <div class="sheet__inner notfound">
+      <p class="notfound__code">404</p>
+      <h1 class="notfound__title">Nothing here</h1>
+      <p class="notfound__body">That page doesn't exist. It may never have.</p>
+      <nav class="notfound__links" aria-label="Elsewhere">
+        <a class="notfound__home link-quiet" href="/">← {name}</a>
+        <a class="link" href="/archive/">The 2016 site</a>
+      </nav>
+    </div>
+  </main>
+</Base>

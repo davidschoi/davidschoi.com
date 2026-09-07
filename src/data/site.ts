@@ -16,7 +16,7 @@ export const colophon =
 // Company home pages, keyed by the name the timeline and resume use. A company
 // that isn't listed here renders as plain text — that's how UC Berkeley stays
 // unlinked. One map so a dead link is fixed in one place.
-export const companyUrls = {
+export const companyUrls: Record<string, string> = {
   Switchfly: 'https://switchfly.com',
   Solver: 'https://solverglobal.com',
   Twitch: 'https://twitch.tv',

@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import Timeline from '../components/Timeline.astro';
+import timeline from '../data/timeline';
+import portrait from '../assets/david-illustration.png';
+import { colophon, lede, location, name, role } from '../data/site';
+import '../styles/home.css';
+---
+
+<Base title={name} path="/">
+  <main class="sheet" id="main">
+    <div class="sheet__inner home">
+      <header class="masthead">
+        <h1 class="masthead__name">David<br class="masthead__break" /> S Choi</h1>
+
+        <img
+          class="masthead__portrait"
+          src={portrait.src}
+          width={portrait.width}
+          height={portrait.height}
+          alt="Illustrated portrait of David Choi"
+        />
+
+        <div class="masthead__intro">
+          <p class="masthead__meta">{role} · {location}</p>
+          <p class="masthead__lede">{lede}</p>
+        </div>
+      </header>
+
+      <Timeline items={timeline} />
+
+      <p class="home__colophon">{colophon}</p>
+
+      <Footer primary={{ href: '/resume', label: 'Resume →' }} />
+    </div>
+  </main>
+</Base>

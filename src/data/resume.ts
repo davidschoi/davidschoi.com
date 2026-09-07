@@ -4,7 +4,26 @@
 export const summary =
   "I build consumer and B2B web products and stay in the code: tech plan, system design, and ownership through to production monitoring. Accessibility by default, AI-assisted throughout.";
 
-export const experience = [
+export type Job = {
+  company: string;
+  role: string;
+  start: string;
+  end: string;
+  location: string;
+  bullets: string[];
+};
+
+export type SkillGroup = {
+  label: string;
+  body: string;
+};
+
+export type Education = {
+  school: string;
+  detail: string;
+};
+
+export const experience: Job[] = [
   {
     company: 'Wander',
     role: 'Staff Product Engineer',
@@ -97,7 +116,7 @@ export const experience = [
   },
 ];
 
-export const skills = [
+export const skills: SkillGroup[] = [
   {
     label: 'Languages & frameworks',
     body: 'TypeScript, JavaScript, React, React Native, Next.js, Astro, Vite, Tailwind, Vanilla Extract, Storybook, design systems, accessibility, Node.js, Fastify, GraphQL, Prisma, PostgreSQL',
@@ -108,7 +127,7 @@ export const skills = [
   },
 ];
 
-export const education = {
+export const education: Education = {
   school: 'University of California, Berkeley',
   detail: 'B.A. Sociology · 2011',
 };

@@ -1,0 +1,28 @@
+---
+import CompanyLink from './CompanyLink.astro';
+import type { TimelineEntry } from '../data/timeline';
+import './Timeline.css';
+
+interface Props {
+  items: TimelineEntry[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="tl">
+  {
+    items.map((item) => (
+      <li class="tl__row">
+        <span class="tl__year">{item.year}</span>
+        <span class={`tl__dot tl__dot--${item.kind}`} aria-hidden="true" />
+        <div>
+          <div class={`tl__title tl__title--${item.kind}`}>
+            <CompanyLink name={item.title} />
+          </div>
+          {item.detail && <div class="tl__detail">{item.detail}</div>}
+        </div>
+      </li>
+    ))
+  }
+</ol>

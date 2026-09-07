@@ -4,7 +4,14 @@
 // title, 'life' gets a hollow one. Roles stay to a bare title here; the resume
 // page carries what each one actually involved.
 
-const timeline = [
+export type TimelineEntry = {
+  year: string;
+  kind: 'work' | 'life';
+  title: string;
+  detail?: string;
+};
+
+const timeline: TimelineEntry[] = [
   { year: '1988', kind: 'life', title: 'Born' },
   {
     year: '2011',
