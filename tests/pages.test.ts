@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { describe, expect, test } from 'vitest';
 import timeline from '../src/data/timeline';
@@ -139,6 +139,17 @@ describe('theme', () => {
     const script = html.indexOf("localStorage.getItem('theme')");
     expect(script).toBeGreaterThan(-1);
     expect(script).toBeLessThan(html.indexOf('<body'));
+  });
+
+  test('ships a dark favicon for the toggle to swap in', () => {
+    expect(existsSync('dist/favicon-32-dark.png')).toBe(true);
+    expect(existsSync('dist/favicon-512-dark.png')).toBe(true);
+    // Markup points at the light pair; the theme script rewrites href from there,
+    // so the swap is idempotent across repeated toggles.
+    const icons = [...home.querySelectorAll('link[rel="icon"]')].map((l) =>
+      l.getAttribute('href')
+    );
+    expect(icons).toEqual(['/favicon-32.png', '/favicon-512.png']);
   });
 
   test('ships both palettes, so neither needs a round trip', () => {

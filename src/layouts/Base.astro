@@ -73,6 +73,7 @@ const ogImage = new URL('/og-image.png', Astro.site).href;
         const btn = document.querySelector('.theme-toggle');
         if (!btn) return;
         const media = matchMedia('(prefers-color-scheme: dark)');
+        const icons = document.querySelectorAll('link[rel="icon"]');
         const isDark = () =>
           root.dataset.theme ? root.dataset.theme === 'dark' : media.matches;
         const sync = () => {
@@ -82,6 +83,10 @@ const ogImage = new URL('/og-image.png', Astro.site).href;
             'aria-label',
             dark ? 'Switch to light theme' : 'Switch to dark theme'
           );
+          icons.forEach((l) => {
+            const base = l.getAttribute('href').replace('-dark', '').slice(0, -4);
+            l.setAttribute('href', dark ? base + '-dark.png' : base + '.png');
+          });
         };
         btn.addEventListener('click', () => {
           root.dataset.theme = isDark() ? 'light' : 'dark';
