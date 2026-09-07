@@ -1,8 +1,5 @@
-// The home-page ledger: career and life in one list, oldest first.
-//
-// `kind` drives the marker — 'work' gets a filled sienna square and a heavier
-// title, 'life' gets a hollow one. Roles stay to a bare title here; the resume
-// page carries what each one actually involved.
+// Career and life in one list, oldest first. Titles stay bare here; the resume
+// page carries what each role involved.
 
 export type TimelineEntry = {
   year: string;

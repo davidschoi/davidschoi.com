@@ -2,8 +2,7 @@
 import { email, github, linkedin } from '../data/site';
 import './Footer.css';
 
-// Shared by every page. `primary` is the one route-level link that changes:
-// the home page points at the resume, the resume points back.
+// `primary` differs per page: each points at the other.
 interface Props {
   primary: { href: string; label: string };
   ruled?: boolean;

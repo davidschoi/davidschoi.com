@@ -3,8 +3,6 @@ import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 
-// Every page supplies its own title, description and path, so each one ships a
-// correct <head> — the SPA could only ever serve one set of tags for all three.
 interface Props {
   title: string;
   description?: string;

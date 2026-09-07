@@ -1,5 +1,4 @@
-// Long-form resume content. The downloadable PDF lives at
-// public/David-S-Choi-Resume.pdf and should be kept in step with this.
+// Keep public/David-S-Choi-Resume.pdf in step with this.
 
 export const summary =
   "I build consumer and B2B web products and stay in the code: tech plan, system design, and ownership through to production monitoring. Accessibility by default, AI-assisted throughout.";

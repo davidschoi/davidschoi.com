@@ -1,11 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// The 2016 archive ships from public/ as hand-written markup, and its asset
-// paths are relative (`css/style.css`), so they only resolve while the browser's
-// URL ends in a slash — /archive would load the page unstyled. Hence a redirect
-// to /archive/ rather than an internal rewrite. Static hosts resolve /archive/
-// to its index.html themselves; the dev server needs the second branch spelled
-// out, since it does no directory-index lookup inside public/.
+// The archive's asset paths are relative, so they break without the trailing
+// slash. Dev needs the second branch; static hosts resolve it themselves.
 const archiveDirectoryIndex = {
   name: 'archive-directory-index',
   hooks: {

@@ -5,8 +5,7 @@ import timeline from '../src/data/timeline';
 import { experience } from '../src/data/resume';
 import { github, location, role } from '../src/data/site';
 
-// `npm test` runs `astro build` first, so these assert against exactly the
-// bytes that ship — head tags and routing included, not just components.
+// `npm test` builds first, so these assert the bytes that actually ship.
 function page(file: string): Document {
   return new JSDOM(readFileSync(`dist/${file}`, 'utf8')).window.document;
 }
@@ -69,8 +68,7 @@ describe('unknown routes', () => {
     const archive = [...notFound.querySelectorAll('a')].find((a) =>
       a.getAttribute('href')?.includes('archive')
     );
-    // The 2016 markup references its assets relatively (`css/style.css`), which
-    // only resolve while the URL ends in a slash — /archive loads it unstyled.
+    // Relative asset paths in the 2016 markup break without the slash.
     expect(archive?.getAttribute('href')).toBe('/archive/');
   });
 });
@@ -96,8 +94,6 @@ describe('footer', () => {
   });
 });
 
-// The reasons the site moved off the SPA. None of these could hold before:
-// every route served one shared <head> out of a 246 kB bundle.
 describe('static output', () => {
   test('each page carries its own title and og:url', () => {
     expect(home.title).toBe('David S Choi');

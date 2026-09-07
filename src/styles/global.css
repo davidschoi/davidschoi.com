@@ -68,10 +68,8 @@ a:hover {
   border-bottom: 1px solid var(--hairline);
 }
 
-/* A link that reads as text until you reach for it: nothing at rest, then a
-   sienna rule wipes in left to right. Company names and the route links use it
-   so the pages keep their rhythm instead of stuttering with underlines.
-   The reduced-motion rule below collapses the wipe to an instant swap. */
+/* No rule at rest, so the pages keep their rhythm instead of stuttering
+   with underlines. */
 .link-quiet {
   position: relative;
   text-decoration: none;
@@ -104,7 +102,6 @@ img {
   max-width: 100%;
 }
 
-/* The sheet. Full-bleed on the page, centred column inside. */
 .sheet {
   background: var(--paper);
   min-height: 100vh;
@@ -122,7 +119,6 @@ img {
   }
 }
 
-/* Skip link — visible only once focused. */
 .skip {
   position: absolute;
   left: -9999px;

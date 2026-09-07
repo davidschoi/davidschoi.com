@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  // public/archive is frozen 2016 markup and jQuery-era JS — it ships verbatim
-  // and is explicitly not maintained, so keep it out of the typechecker.
+  // public/archive is frozen 2016 code — not ours to typecheck.
   "exclude": ["dist", "public"]
 }

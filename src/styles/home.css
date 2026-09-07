@@ -3,9 +3,6 @@
   color: var(--ink);
 }
 
-/* Desktop: the portrait spans both rows, so it starts level with the name and
-   runs down alongside the intro.
-   Mobile: the name and portrait share the top row, intro drops below. */
 .masthead {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -32,8 +29,7 @@
 
 .masthead__portrait {
   grid-area: portrait;
-  /* 148px renders 169px tall, which is exactly the height of the name and
-     intro stacked beside it. Retune if the lede ever grows a line. */
+  /* Height-matches the name and intro beside it; retune if the lede wraps. */
   width: 148px;
   height: auto;
   flex: none;

@@ -10,8 +10,7 @@ const { job } = Astro.props;
 ---
 
 <article class="job">
-  {/* Stacked on desktop, one line on mobile — the em dash between the
-      dates comes from CSS so it can adapt to either. */}
+  {/* The dash between dates comes from CSS so it can adapt per breakpoint. */}
   <div class="job__when">
     <span class="job__start">{job.start}</span>
     <span>{job.end}</span>
