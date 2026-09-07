@@ -1,0 +1,6 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  // public/archive is frozen 2016 code — not ours to typecheck.
+  "exclude": ["dist", "public"]
+}

@@ -1,0 +1,37 @@
+---
+import CompanyLink from './CompanyLink.astro';
+import type { Job } from '../data/resume';
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+---
+
+<article class="job">
+  {/* The dash between dates comes from CSS so it can adapt per breakpoint. */}
+  <div class="job__when">
+    <span class="job__start">{job.start}</span>
+    <span>{job.end}</span>
+    <span class="job__where">{job.location}</span>
+  </div>
+
+  <div class="job__body">
+    <div>
+      <h3 class="job__company"><CompanyLink name={job.company} /></h3>
+      <div class="job__role">{job.role}</div>
+    </div>
+
+    <ul class="job__bullets">
+      {
+        job.bullets.map((bullet) => (
+          <li class="job__bullet">
+            <span class="job__dash" aria-hidden="true">—</span>
+            <span>{bullet}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

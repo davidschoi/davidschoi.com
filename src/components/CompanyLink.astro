@@ -1,0 +1,13 @@
+---
+import { companyUrls } from '../data/site';
+
+// Links are managed in site.ts, not here.
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const url = companyUrls[name];
+---
+
+{url ? <a class="link-quiet" href={url} target="_blank" rel="noopener noreferrer">{name}</a> : name}

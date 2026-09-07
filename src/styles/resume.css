@@ -3,8 +3,7 @@
   color: var(--ink);
 }
 
-/* Deliberately identical to .footer__primary — it's the same kind of link
-   (the one route-level move on the page), just at the top instead of the end. */
+/* Deliberately identical to .footer__primary — the same kind of link. */
 .resume__back {
   font-family: var(--mono);
   font-size: 12px;
@@ -44,8 +43,7 @@
   transition: border-color 0.15s ease;
 }
 
-/* Already a box, so it can't take the hairline the other links get on hover —
-   the border firming up to sienna is the same gesture. */
+/* A box can't take the hairline, so the border firms up instead. */
 .resume__download:hover {
   border-color: var(--accent);
 }
@@ -64,7 +62,6 @@
   margin-top: 52px;
 }
 
-/* The italic serif section labels sit in a 120px gutter beside their content. */
 .resume__label {
   margin: 0;
   font-family: var(--serif);
@@ -75,7 +72,6 @@
   padding-top: 2px;
 }
 
-/* Experience stacks its label above the rows rather than beside them. */
 .resume__label--stacked {
   padding: 0 0 10px;
 }
@@ -117,7 +113,6 @@
   letter-spacing: 0.03em;
 }
 
-/* Stacked: the dash trails the start date on its own line. */
 .job__start::after {
   content: '—';
 }
@@ -162,8 +157,7 @@
 
 .job__bullet {
   display: grid;
-  /* An em dash at 15px needs 15px of advance; the design's 14px track clipped
-     it into the first word. 16px restores the intended gap. */
+  /* 14px clipped the em dash into the first word. */
   grid-template-columns: 16px 1fr;
 }
 
@@ -220,8 +214,7 @@
   text-wrap: pretty;
 }
 
-/* The design has no resume artboard below 860px; collapse the date gutter
-   above the content and let everything run one column. */
+/* No resume artboard below 860px; collapse to one column. */
 @media (max-width: 720px) {
   .resume {
     padding: 44px 24px 56px;

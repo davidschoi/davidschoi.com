@@ -7,7 +7,6 @@
   font-size: 14px;
 }
 
-/* The resume sets itself off from the body copy above with a rule. */
 .footer--ruled {
   margin-top: 56px;
   padding-top: 24px;
@@ -36,8 +35,7 @@
 @media (max-width: 640px) {
   .footer {
     flex-direction: column;
-    /* Not `stretch` — the links size to their text so they read like the
-       resume's back link rather than full-width bars. */
+    /* Content-width, so the links read as links rather than bars. */
     align-items: flex-start;
     gap: 12px;
   }

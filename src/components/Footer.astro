@@ -1,0 +1,24 @@
+---
+import { email, github, linkedin } from '../data/site';
+import './Footer.css';
+
+// `primary` differs per page: each points at the other.
+interface Props {
+  primary: { href: string; label: string };
+  ruled?: boolean;
+}
+
+const { primary, ruled = false } = Astro.props;
+---
+
+<nav class={ruled ? 'footer footer--ruled' : 'footer'} aria-label="Elsewhere">
+  <a class="footer__primary link-quiet" href={primary.href}>{primary.label}</a>
+
+  <span class="footer__slash" aria-hidden="true">/</span>
+
+  <span class="footer__externals">
+    <a class="link" href={github} target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a class="link" href={linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="link" href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">Email</a>
+  </span>
+</nav>
