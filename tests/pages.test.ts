@@ -64,6 +64,15 @@ describe('unknown routes', () => {
   test('get a 404 page rather than a blank screen', () => {
     expect(notFound.querySelector('h1')?.textContent).toMatch(/Nothing here/);
   });
+
+  test('link the archive with a trailing slash', () => {
+    const archive = [...notFound.querySelectorAll('a')].find((a) =>
+      a.getAttribute('href')?.includes('archive')
+    );
+    // The 2016 markup references its assets relatively (`css/style.css`), which
+    // only resolve while the URL ends in a slash — /archive loads it unstyled.
+    expect(archive?.getAttribute('href')).toBe('/archive/');
+  });
 });
 
 describe('footer', () => {

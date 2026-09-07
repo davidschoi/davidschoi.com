@@ -65,3 +65,10 @@ The original portfolio (Bootstrap, later de-jQueried) lives on:
   step. Unlinked from the main pages; only the 404 page points at it.
 
 It is frozen. Don't fix its bugs.
+
+Link it as `/archive/`, with the trailing slash — its markup references assets
+relatively (`css/style.css`), so `/archive` would render it unstyled.
+`vercel.json` redirects the slashless form for anyone who types it.
+
+The major version tracks the design generation, not the stack: 2016 was v1, the
+current design is v2. A redesign is what makes it v3 — a framework change isn't.
