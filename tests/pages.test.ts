@@ -6,8 +6,12 @@ import { experience } from '../src/data/resume';
 import { github, location, role } from '../src/data/site';
 
 // `npm test` builds first, so these assert the bytes that actually ship.
+function raw(file: string): string {
+  return readFileSync(`dist/${file}`, 'utf8');
+}
+
 function page(file: string): Document {
-  return new JSDOM(readFileSync(`dist/${file}`, 'utf8')).window.document;
+  return new JSDOM(raw(file)).window.document;
 }
 
 const home = page('index.html');
@@ -117,5 +121,29 @@ describe('static output', () => {
   test('renders content into the HTML rather than an empty root', () => {
     expect(home.querySelectorAll('.tl__row').length).toBeGreaterThan(0);
     expect(home.querySelector('#root')).toBeNull();
+  });
+});
+
+describe('theme', () => {
+  test('every page offers a labelled toggle', () => {
+    for (const doc of [home, resume, notFound]) {
+      const btn = doc.querySelector('.theme-toggle');
+      expect(btn?.tagName).toBe('BUTTON');
+      expect(btn?.getAttribute('aria-label')).toMatch(/theme/i);
+    }
+  });
+
+  test('restores a stored theme before the body renders', () => {
+    // Below <body> it would paint light first and then flip — the flash.
+    const html = raw('index.html');
+    const script = html.indexOf("localStorage.getItem('theme')");
+    expect(script).toBeGreaterThan(-1);
+    expect(script).toBeLessThan(html.indexOf('<body'));
+  });
+
+  test('ships both palettes, so neither needs a round trip', () => {
+    const html = raw('index.html');
+    expect(html).toContain('light-dark(#f5f2eb,#1a1712)');
+    expect(html).toContain('light-dark(#1c1a16,#f0ece2)');
   });
 });

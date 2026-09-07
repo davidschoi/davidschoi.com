@@ -38,6 +38,10 @@
   font-size: 14px;
 }
 
+.notfound__links .theme-toggle {
+  margin-left: auto;
+}
+
 .notfound__home {
   font-family: var(--mono);
   font-size: 12px;

@@ -24,6 +24,11 @@
   color: var(--slash);
 }
 
+/* A control, not a link — pushed clear of the link cluster. */
+.footer .theme-toggle {
+  margin-left: auto;
+}
+
 .footer__externals {
   display: flex;
   flex-wrap: wrap;
@@ -52,6 +57,10 @@
 
   .footer__slash {
     display: none;
+  }
+
+  .footer .theme-toggle {
+    margin-left: 0;
   }
 
   .footer__externals {

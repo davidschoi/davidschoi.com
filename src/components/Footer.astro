@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 import { email, github, linkedin } from '../data/site';
 import './Footer.css';
 
@@ -21,4 +22,6 @@ const { primary, ruled = false } = Astro.props;
     <a class="link" href={linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a class="link" href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">Email</a>
   </span>
+
+  <ThemeToggle />
 </nav>

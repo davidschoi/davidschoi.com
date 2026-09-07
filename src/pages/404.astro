@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { name } from '../data/site';
 import '../styles/notfound.css';
 ---
@@ -13,6 +14,7 @@ import '../styles/notfound.css';
       <nav class="notfound__links" aria-label="Elsewhere">
         <a class="notfound__home link-quiet" href="/">← {name}</a>
         <a class="link" href="/archive/">The 2016 site</a>
+        <ThemeToggle />
       </nav>
     </div>
   </main>

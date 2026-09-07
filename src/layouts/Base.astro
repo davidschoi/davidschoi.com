@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const canonical = new URL(path, Astro.site).href;
-const ogImage = new URL('/favicon-512.png', Astro.site).href;
+const ogImage = new URL('/og-image.png', Astro.site).href;
 ---
 
 <!doctype html>
@@ -26,6 +26,14 @@ const ogImage = new URL('/favicon-512.png', Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script is:inline>
+      // Before paint, or a stored dark preference flashes light first.
+      try {
+        const t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -35,7 +43,8 @@ const ogImage = new URL('/favicon-512.png', Astro.site).href;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
-    <meta name="theme-color" content="#F5F2EB" />
+    <meta name="theme-color" content="#f5f2eb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1712" media="(prefers-color-scheme: dark)" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -57,5 +66,33 @@ const ogImage = new URL('/favicon-512.png', Astro.site).href;
     <slot />
     <Analytics />
     <SpeedInsights />
+
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        const media = matchMedia('(prefers-color-scheme: dark)');
+        const isDark = () =>
+          root.dataset.theme ? root.dataset.theme === 'dark' : media.matches;
+        const sync = () => {
+          const dark = isDark();
+          btn.setAttribute('aria-pressed', String(dark));
+          btn.setAttribute(
+            'aria-label',
+            dark ? 'Switch to light theme' : 'Switch to dark theme'
+          );
+        };
+        btn.addEventListener('click', () => {
+          root.dataset.theme = isDark() ? 'light' : 'dark';
+          try {
+            localStorage.setItem('theme', root.dataset.theme);
+          } catch {}
+          sync();
+        });
+        media.addEventListener('change', sync);
+        sync();
+      })();
+    </script>
   </body>
 </html>

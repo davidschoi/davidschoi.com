@@ -34,6 +34,7 @@
   height: auto;
   flex: none;
   display: block;
+  filter: var(--portrait-filter);
 }
 
 .masthead__intro {

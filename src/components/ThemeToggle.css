@@ -1,0 +1,36 @@
+.theme-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Each icon shows the theme you'd switch *to*, so the moon means "go dark". */
+.theme-toggle__moon {
+  display: var(--icon-moon);
+}
+
+.theme-toggle__sun {
+  display: var(--icon-sun);
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    min-height: 44px;
+  }
+}

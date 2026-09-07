@@ -1,36 +1,67 @@
 :root {
+  /* light-dark() picks by used color-scheme, so each token states both values
+     once and the toggle only has to change color-scheme. */
+  color-scheme: light dark;
+
   /* Surfaces */
-  --canvas: #e8e5de; /* behind the sheet */
-  --paper: #f5f2eb; /* the sheet itself */
+  --canvas: light-dark(#e8e5de, #100e0a); /* behind the sheet */
+  --paper: light-dark(#f5f2eb, #1a1712); /* the sheet itself */
 
   /* Ink */
-  --ink: #1c1a16;
-  --ink-body: #2e2a24;
-  --ink-soft: #3a3630;
-  --muted: #6b6558;
-  --muted-mono: #857f70;
-  --faint: #a29c8e;
-  --faint-alt: #918b7e;
-  --label: #8a8578;
+  --ink: light-dark(#1c1a16, #f0ece2);
+  --ink-body: light-dark(#2e2a24, #e0dad0);
+  --ink-soft: light-dark(#3a3630, #d2ccc0);
+  --muted: light-dark(#6b6558, #a49d8c);
+  --muted-mono: light-dark(#857f70, #9d9685);
+  --faint: light-dark(#a29c8e, #8f8877);
+  --faint-alt: light-dark(#918b7e, #948d7c);
+  --label: light-dark(#8a8578, #979083);
 
   /* Rules & marks */
-  --rule: #e2ded4;
-  --rule-strong: #ddd8cc;
-  --hairline: #c9c4b8;
-  --dot-hollow: #a8a296;
-  --dash: #c0b9a6;
-  --slash: #d4d1ca;
+  --rule: light-dark(#e2ded4, #2c2822);
+  --rule-strong: light-dark(#ddd8cc, #37322a);
+  --hairline: light-dark(#c9c4b8, #4a443a);
+  --dot-hollow: light-dark(#a8a296, #6a6455);
+  --dash: light-dark(#c0b9a6, #5a5446);
+  --slash: light-dark(#d4d1ca, #3f3a31);
 
-  /* Accent — sienna */
-  --accent: #8a5a2b;
-  --accent-border: #ddcfb8;
-  --accent-bg: #efeadd;
+  /* Accent — sienna, lifted on dark so it stays legible on the deep ground */
+  --accent: light-dark(#8a5a2b, #d59a5b);
+  --accent-border: light-dark(#ddcfb8, #4d3c26);
+  --accent-bg: light-dark(#efeadd, #241d14);
+
+  /* The portrait is black line art on transparency, so it needs inverting to
+     survive a dark ground. Not a colour, so it can't use light-dark(). */
+  --portrait-filter: none;
+
+  /* display values, so the toggle's two icons swap with the theme */
+  --icon-moon: block;
+  --icon-sun: none;
 
   /* Type */
   --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --serif: Newsreader, Georgia, 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --portrait-filter: invert(1) sepia(0.18);
+    --icon-moon: none;
+    --icon-sun: block;
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --portrait-filter: invert(1) sepia(0.18);
+  --icon-moon: none;
+  --icon-sun: block;
 }
 
 *,
