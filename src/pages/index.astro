@@ -12,7 +12,7 @@ import '../styles/home.css';
   <main class="sheet" id="main">
     <div class="sheet__inner home">
       <header class="masthead">
-        <h1 class="masthead__name">David<br class="masthead__break" /> S Choi</h1>
+        <h1 class="masthead__name">David S Choi</h1>
 
         <img
           class="masthead__portrait"
@@ -23,7 +23,11 @@ import '../styles/home.css';
         />
 
         <div class="masthead__intro">
-          <p class="masthead__meta">{role} · {location}</p>
+          <p class="masthead__meta">
+            <span class="masthead__role">{role}</span>
+            <span class="masthead__sep" aria-hidden="true"> · </span>
+            <span class="masthead__place">{location}</span>
+          </p>
           <p class="masthead__lede">{lede}</p>
         </div>
       </header>

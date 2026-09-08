@@ -23,10 +23,6 @@
   letter-spacing: -0.015em;
 }
 
-.masthead__break {
-  display: none;
-}
-
 .masthead__portrait {
   grid-area: portrait;
   /* Height-matches the name and intro beside it; retune if the lede wraps. */
@@ -76,26 +72,34 @@
     padding: 44px 24px 48px;
   }
 
+  /* Same two-column masthead as above — name and intro left, portrait right.
+     Only the measurements shrink, so the layout never rearranges itself. */
   .masthead {
-    grid-template-areas:
-      'title portrait'
-      'intro intro';
-    align-items: end;
-    gap: 20px 16px;
+    gap: 16px;
   }
 
+  /* One line, sized to fill the column the portrait leaves: 100vw less 48px
+     of padding, 16px of gap and the 22vw portrait. 4.22 is the measured width
+     of 'David S Choi' per 1em of Instrument Serif, with ~2% slack so it never
+     tips onto a second line. Retune if the name, the display face or the
+     padding changes. */
   .masthead__name {
-    font-size: 40px;
-  }
-
-  .masthead__break {
-    display: inline;
+    font-size: min(calc((78vw - 64px) / 4.22), 72px);
+    line-height: 1;
   }
 
   .masthead__portrait {
-    width: 88px;
-    /* Bottom-aligned here, so nudge it to seat on the name's baseline. */
-    margin-bottom: -4px;
+    width: 22vw;
+  }
+
+  /* Stacked, and the separator only earns its place on one line. */
+  .masthead__role,
+  .masthead__place {
+    display: block;
+  }
+
+  .masthead__sep {
+    display: none;
   }
 
   .masthead__meta {
@@ -112,5 +116,25 @@
   .home__colophon {
     margin-top: 28px;
     font-size: 14px;
+  }
+}
+
+/* Below this the portrait's column starts pushing the lede to a fourth line,
+   so drop the image and give the name and intro the full width. Every current
+   phone (360, 375, 390, 414, 430) keeps it; 320px-class handsets don't. */
+@media (max-width: 350px) {
+  .masthead {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'intro';
+  }
+
+  .masthead__portrait {
+    display: none;
+  }
+
+  .masthead__name {
+    font-size: min(calc((100vw - 48px) / 4.22), 72px);
   }
 }
