@@ -81,10 +81,11 @@
   /* One line, sized to fill the column the portrait leaves: 100vw less 48px
      of padding, 16px of gap and the 22vw portrait. 4.22 is the measured width
      of 'David S Choi' per 1em of Instrument Serif, with ~2% slack so it never
-     tips onto a second line. Retune if the name, the display face or the
-     padding changes. */
+     tips onto a second line. The 56px ceiling is the desktop size, so nothing
+     jumps across the breakpoint; it binds above ~385px and the fill takes over
+     below that. Retune if the name, the display face or the padding changes. */
   .masthead__name {
-    font-size: min(calc((78vw - 64px) / 4.22), 72px);
+    font-size: min(calc((78vw - 64px) / 4.22), 56px);
     line-height: 1;
   }
 
@@ -135,6 +136,6 @@
   }
 
   .masthead__name {
-    font-size: min(calc((100vw - 48px) / 4.22), 72px);
+    font-size: min(calc((100vw - 48px) / 4.22), 56px);
   }
 }
