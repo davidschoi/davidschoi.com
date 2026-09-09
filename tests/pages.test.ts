@@ -17,6 +17,7 @@ function page(file: string): Document {
 const home = page('index.html');
 const resume = page('resume/index.html');
 const notFound = page('404.html');
+const archive = page('archive/index.html');
 
 describe('home', () => {
   test('leads with the name and the current role', () => {
@@ -107,6 +108,11 @@ describe('static output', () => {
       doc.querySelector('meta[property="og:url"]')?.getAttribute('content');
     expect(ogUrl(home)).toBe('https://www.davidschoi.com/');
     expect(ogUrl(resume)).toBe('https://www.davidschoi.com/resume');
+  });
+
+  test('the 2016 archive is titled apart from the live site', () => {
+    expect(archive.title).toBe('2016 archive — David S Choi');
+    expect(archive.title).not.toBe(home.title);
   });
 
   test('ships no framework JavaScript bundle', () => {
