@@ -1,25 +1,38 @@
 ---
-import { skills } from '../data/resume';
-import './Stack.css';
+import './Console.css';
+
+interface Props {
+  command: string;
+  // A label is only for the screen-reader copy — the line never shows one.
+  groups: { label?: string; items: string[] }[];
+  // Caps how many entries a set holds. Without it a set fills the line, which
+  // suits a stack; a short personal list reads better a couple at a time.
+  max?: number;
+}
+
+const { command, groups, max } = Astro.props;
 
 // Seeds the line for a script-blocked read; three entries clear 320px.
-const seed = skills[0].items.slice(0, 3).join(' · ');
+const seed = groups
+  .flatMap((group) => group.items)
+  .slice(0, Math.min(max ?? 3, 3))
+  .join(' · ');
 ---
 
-<div class="stack">
-  <div class="stack__line" aria-hidden="true">
-    <span class="stack__chevron">&gt;</span>
-    <span class="stack__command">/stack</span>
-    <span class="stack__readout">{seed}</span>
-    <span class="stack__cursor"></span>
+<div class="console" data-max={max}>
+  <div class="console__line" aria-hidden="true">
+    <span class="console__chevron">&gt;</span>
+    <span class="console__command">{command}</span>
+    <span class="console__readout">{seed}</span>
+    <span class="console__cursor"></span>
   </div>
 
   {/* The line cycles, so it can't be the accessible copy. */}
-  <div class="stack__sr">
+  <div class="console__sr">
     {
-      skills.map((group) => (
+      groups.map((group) => (
         <>
-          <p>{group.label}</p>
+          {group.label && <p>{group.label}</p>}
           <ul>
             {group.items.map((item) => (
               <li>{item}</li>
@@ -33,11 +46,11 @@ const seed = skills[0].items.slice(0, 3).join(' · ');
 
 <script is:inline>
   (() => {
-    const root = document.querySelector('.stack');
+    const root = document.querySelector('.console');
     if (!root || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const readout = root.querySelector('.stack__readout');
-    const entries = [...root.querySelectorAll('.stack__sr li')].map(
+    const readout = root.querySelector('.console__readout');
+    const entries = [...root.querySelectorAll('.console__sr li')].map(
       (li) => li.textContent
     );
     if (!readout || entries.length === 0) return;
@@ -57,11 +70,15 @@ const seed = skills[0].items.slice(0, 3).join(' · ');
       return Math.max(8, Math.floor(room / charWidth));
     }
 
+    const max = Number(root.dataset.max) || Infinity;
+
     function paginate(width) {
       const pages = [];
       let page = [];
       for (const entry of entries) {
-        if (page.length && page.concat(entry).join(SEP).length > width) {
+        const full =
+          page.length >= max || page.concat(entry).join(SEP).length > width;
+        if (page.length && full) {
           pages.push(page.join(SEP));
           page = [];
         }
@@ -105,6 +122,7 @@ const seed = skills[0].items.slice(0, 3).join(' · ');
         if (mine !== run) return;
 
         const line = pages[i % pages.length];
+        const only = pages.length === 1;
         const from = line.startsWith(readout.textContent)
           ? readout.textContent.length
           : 0;
@@ -114,6 +132,9 @@ const seed = skills[0].items.slice(0, 3).join(' · ');
           readout.textContent = line.slice(0, c);
           await wait(45);
         }
+
+        // Nothing to cycle to: rest on it rather than retyping it forever.
+        if (only) return;
 
         await wait(1900);
 

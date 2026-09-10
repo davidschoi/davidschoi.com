@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom';
 import { describe, expect, test } from 'vitest';
 import timeline from '../src/data/timeline';
 import { experience, skills } from '../src/data/resume';
-import { github, location, role } from '../src/data/site';
+import { github, location, role, whoami } from '../src/data/site';
 
 // `npm test` builds first, so these assert the bytes that actually ship.
 function raw(file: string): string {
@@ -152,28 +152,35 @@ describe('static output', () => {
   });
 });
 
-describe('stack console', () => {
-  test('shows the /stack command it is pretending to run', () => {
-    expect(home.querySelector('.stack__command')?.textContent?.trim()).toBe('/stack');
+describe('consoles', () => {
+  const consoleOn = (doc: Document) => doc.querySelector('.console');
+
+  test('the home page runs /whoami and the resume runs /stack', () => {
+    expect(home.querySelector('.console__command')?.textContent?.trim()).toBe('/whoami');
+    expect(resume.querySelector('.console__command')?.textContent?.trim()).toBe('/stack');
   });
 
-  test('seeds the line with entries that fit the narrowest screen', () => {
+  test('each seeds its line with entries that fit the narrowest screen', () => {
     // What a reader sees with the script blocked.
-    const readout = home.querySelector('.stack__readout')?.textContent?.trim();
-    expect(readout).toBe(skills[0].items.slice(0, 3).join(' \u00b7 '));
+    expect(home.querySelector('.console__readout')?.textContent?.trim()).toBe(
+      whoami.slice(0, 1).join(' \u00b7 ')
+    );
+    expect(resume.querySelector('.console__readout')?.textContent?.trim()).toBe(
+      skills[0].items.slice(0, 3).join(' \u00b7 ')
+    );
   });
 
-  test('carries every entry for a screen reader, not just the seeded line', () => {
-    const sr = home.querySelector('.stack__sr');
-    const listed = [...(sr?.querySelectorAll('li') ?? [])].map((n) => n.textContent);
-    expect(listed).toEqual(skills.flatMap((group) => group.items));
-    for (const group of skills) {
-      expect(sr?.textContent).toContain(group.label);
-    }
+  test('each carries every entry for a screen reader', () => {
+    const listed = (doc: Document) =>
+      [...(consoleOn(doc)?.querySelectorAll('.console__sr li') ?? [])].map(
+        (n) => n.textContent
+      );
+    expect(listed(home)).toEqual(whoami);
+    expect(listed(resume)).toEqual(skills.flatMap((group) => group.items));
   });
 
-  test('drops the group labels from the visible line', () => {
-    const shown = home.querySelector('.stack__line')?.textContent ?? '';
+  test('keeps the group labels out of the visible line', () => {
+    const shown = resume.querySelector('.console__line')?.textContent ?? '';
     for (const group of skills) {
       expect(shown).not.toContain(group.label);
     }
@@ -181,19 +188,32 @@ describe('stack console', () => {
 
   test('capitalises every entry, so the cycling line reads evenly', () => {
     // One lowercase entry between two proper nouns reads as a mistake.
-    const lower = skills
-      .flatMap((group) => group.items)
-      .filter((item) => item[0] !== item[0].toUpperCase());
-    expect(lower).toEqual([]);
+    const entries = [...skills.flatMap((group) => group.items), ...whoami];
+    expect(entries.filter((e) => e[0] !== e[0].toUpperCase())).toEqual([]);
   });
 
-  test('sits between the lede and the timeline', () => {
-    const nodes = [...home.querySelectorAll('.masthead, .stack, .tl')];
+  test('/whoami sits between the lede and the timeline', () => {
+    const nodes = [...home.querySelectorAll('.masthead, .console, .tl')];
     expect(nodes.map((n) => n.className.split(' ')[0])).toEqual([
       'masthead',
-      'stack',
+      'console',
       'tl',
     ]);
+  });
+
+  test('/stack sits under the summary, above Experience', () => {
+    const nodes = [
+      ...resume.querySelectorAll('.resume__summary, .console, .resume__section'),
+    ];
+    expect(nodes.slice(0, 3).map((n) => n.className.split(' ')[0])).toEqual([
+      'resume__summary',
+      'console',
+      'resume__section',
+    ]);
+  });
+
+  test('leaves the resume Skills prose in place', () => {
+    expect(resume.querySelectorAll('.skill__body').length).toBe(skills.length);
   });
 });
 

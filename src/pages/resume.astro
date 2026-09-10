@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
+import Console from '../components/Console.astro';
 import Job from '../components/Job.astro';
 import {
   education,
@@ -28,6 +29,8 @@ import '../styles/resume.css';
       </div>
 
       <p class="resume__summary">{summary}</p>
+
+      <Console command="/stack" groups={skills} />
 
       <section class="resume__section">
         <h2 class="resume__label resume__label--stacked">Experience</h2>
