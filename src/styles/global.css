@@ -100,6 +100,34 @@ a:hover {
   border-bottom: 1px solid var(--hairline);
 }
 
+/* A link carrying the weight of a button — one per page, for the one thing
+   that page wants you to do next. */
+.button {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent-border);
+  padding: 9px 14px;
+  background: var(--accent-bg);
+  white-space: nowrap;
+  transition: border-color 0.15s ease;
+}
+
+/* A box can't take the hairline, so the border firms up instead. */
+.button:hover {
+  border-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
 /* No rule at rest, so the pages keep their rhythm instead of stuttering
    with underlines. */
 .link-quiet {

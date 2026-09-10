@@ -65,7 +65,7 @@ describe('resume', () => {
   });
 
   test('offers the PDF as a download', () => {
-    const pdf = resume.querySelector('.resume__download');
+    const pdf = resume.querySelector('a[download]');
     expect(pdf?.getAttribute('href')).toBe('/davidschoi-resume.pdf');
     expect(pdf?.hasAttribute('download')).toBe(true);
   });
@@ -89,6 +89,21 @@ describe('footer', () => {
   test('is shared, and its primary link points the other way on each page', () => {
     expect(home.querySelector('.footer__primary')?.getAttribute('href')).toBe('/resume');
     expect(resume.querySelector('.footer__primary')?.getAttribute('href')).toBe('/');
+  });
+
+  test('renders the same on every page, apart from where it points', () => {
+    // The pages read as one site or they don't; the footer is the seam.
+    const shape = (doc: Document) => {
+      const nav = doc.querySelector('.footer');
+      return {
+        classes: nav?.className,
+        links: [...(nav?.querySelectorAll('.footer__externals .link') ?? [])].map(
+          (a) => a.getAttribute('href')
+        ),
+        toggle: !!nav?.querySelector('.theme-toggle'),
+      };
+    };
+    expect(shape(home)).toEqual(shape(resume));
   });
 
   test('opens GitHub, LinkedIn and Email in a new tab, safely', () => {

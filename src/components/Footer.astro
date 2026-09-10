@@ -6,13 +6,12 @@ import './Footer.css';
 // `primary` differs per page: each points at the other.
 interface Props {
   primary: { href: string; label: string };
-  ruled?: boolean;
 }
 
-const { primary, ruled = false } = Astro.props;
+const { primary } = Astro.props;
 ---
 
-<nav class={ruled ? 'footer footer--ruled' : 'footer'} aria-label="Elsewhere">
+<nav class="footer" aria-label="Elsewhere">
   <a class="footer__primary link-quiet" href={primary.href}>{primary.label}</a>
 
   <span class="footer__slash" aria-hidden="true">/</span>

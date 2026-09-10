@@ -24,7 +24,7 @@ import '../styles/resume.css';
 
       <div class="resume__head">
         <h1 class="resume__title">Resume</h1>
-        <a class="resume__download" href={resumePdf} download>Download PDF ↓</a>
+        <a class="button" href={resumePdf} download>Download PDF ↓</a>
       </div>
 
       <p class="resume__summary">{summary}</p>
@@ -61,7 +61,7 @@ import '../styles/resume.css';
         <p class="resume__interests">{interests}</p>
       </section>
 
-      <Footer primary={{ href: '/', label: '← Home' }} ruled />
+      <Footer primary={{ href: '/', label: '← Home' }} />
     </div>
   </main>
 </Base>
