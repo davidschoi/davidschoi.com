@@ -1,4 +1,4 @@
-// Keep public/David-S-Choi-Resume.pdf in step with this.
+// Keep public/davidschoi-resume.pdf in step with this.
 
 export const summary =
   "I build consumer and B2B web products and stay in the code: tech plan, system design, and ownership through to production monitoring. Accessibility by default, AI-assisted throughout.";
@@ -14,7 +14,7 @@ export type Job = {
 
 export type SkillGroup = {
   label: string;
-  body: string;
+  items: string[];
 };
 
 export type Education = {
@@ -118,11 +118,40 @@ export const experience: Job[] = [
 export const skills: SkillGroup[] = [
   {
     label: 'Languages & frameworks',
-    body: 'TypeScript, JavaScript, React, React Native, Next.js, Astro, Vite, Tailwind, Vanilla Extract, Storybook, design systems, accessibility, Node.js, Fastify, GraphQL, Prisma, PostgreSQL',
+    items: [
+      'TypeScript',
+      'JavaScript',
+      'React',
+      'React Native',
+      'Next.js',
+      'Astro',
+      'Vite',
+      'Tailwind',
+      'Vanilla Extract',
+      'Storybook',
+      'Design Systems',
+      'Accessibility',
+      'Node.js',
+      'Fastify',
+      'GraphQL',
+      'Prisma',
+      'PostgreSQL',
+    ],
   },
   {
     label: 'Infrastructure & tooling',
-    body: 'Vercel, Cloudflare Workers, AWS, CI/CD, Vitest, Jest, Cypress, Claude Code, Cursor, MCP',
+    items: [
+      'Vercel',
+      'Cloudflare Workers',
+      'AWS',
+      'CI/CD',
+      'Vitest',
+      'Jest',
+      'Cypress',
+      'Claude Code',
+      'Cursor',
+      'MCP',
+    ],
   },
 ];
 

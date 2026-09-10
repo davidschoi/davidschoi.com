@@ -1,6 +1,6 @@
 # davidschoi.com
 
-My portfolio. Astro + TypeScript, deployed on Vercel at [www.davidschoi.com](https://www.davidschoi.com/). Every page is static HTML — no client-side JavaScript ships beyond Vercel's analytics tags.
+My portfolio. Astro + TypeScript, deployed on Vercel at [www.davidschoi.com](https://www.davidschoi.com/). Every page is static HTML; the only client-side JavaScript is two small inline scripts — the theme toggle and the home page's `/stack` console — plus Vercel's analytics tags.
 
 ## Develop
 
@@ -18,7 +18,7 @@ npm run preview  # serve dist/ locally
 ```plaintext
 src/pages/            index, resume, 404 — file-based routing
 src/layouts/          Base.astro — the <head>, skip link, analytics
-src/components/       Footer (shared by every page), Timeline, Job, CompanyLink
+src/components/       Footer (shared by every page), Stack, Timeline, Job, CompanyLink
 src/styles/           global.css plus one file per page
 src/data/             site.ts, timeline.ts, resume.ts — all copy lives here
 public/               favicons, resume PDF, archive/
@@ -30,6 +30,8 @@ Components are `.astro`: an HTML template over a TypeScript frontmatter block th
 Copy is data, not markup. To change a job, a date, or a line of the timeline, edit `src/data/` — nothing in `src/pages/` should need to move.
 
 The home timeline stays to a company and a job title per row — the resume page carries what each role actually involved, so repeating it there would just be two places to keep in sync.
+
+`Stack.astro` cycles the `skills` array through a one-line `/stack` console above the timeline, a set of entries at a time; the resume page joins the same array into prose.
 
 ## Deploying
 

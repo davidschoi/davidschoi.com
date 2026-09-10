@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { describe, expect, test } from 'vitest';
 import timeline from '../src/data/timeline';
-import { experience } from '../src/data/resume';
+import { experience, skills } from '../src/data/resume';
 import { github, location, role } from '../src/data/site';
 
 // `npm test` builds first, so these assert the bytes that actually ship.
@@ -46,6 +46,13 @@ describe('home', () => {
 });
 
 describe('resume', () => {
+  test('lists each skill group from the same array the home console reads', () => {
+    const bodies = [...resume.querySelectorAll('.skill__body')].map((n) =>
+      n.textContent?.trim()
+    );
+    expect(bodies).toEqual(skills.map((group) => group.items.join(', ')));
+  });
+
   test('renders every job with its bullets', () => {
     const companies = [...resume.querySelectorAll('.job__company')].map((n) =>
       n.textContent?.trim()
@@ -59,7 +66,7 @@ describe('resume', () => {
 
   test('offers the PDF as a download', () => {
     const pdf = resume.querySelector('.resume__download');
-    expect(pdf?.getAttribute('href')).toBe('/David-S-Choi-Resume.pdf');
+    expect(pdf?.getAttribute('href')).toBe('/davidschoi-resume.pdf');
     expect(pdf?.hasAttribute('download')).toBe(true);
   });
 });
@@ -127,6 +134,51 @@ describe('static output', () => {
   test('renders content into the HTML rather than an empty root', () => {
     expect(home.querySelectorAll('.tl__row').length).toBeGreaterThan(0);
     expect(home.querySelector('#root')).toBeNull();
+  });
+});
+
+describe('stack console', () => {
+  test('shows the /stack command it is pretending to run', () => {
+    expect(home.querySelector('.stack__command')?.textContent?.trim()).toBe('/stack');
+  });
+
+  test('seeds the line with entries that fit the narrowest screen', () => {
+    // What a reader sees with the script blocked.
+    const readout = home.querySelector('.stack__readout')?.textContent?.trim();
+    expect(readout).toBe(skills[0].items.slice(0, 3).join(' \u00b7 '));
+  });
+
+  test('carries every entry for a screen reader, not just the seeded line', () => {
+    const sr = home.querySelector('.stack__sr');
+    const listed = [...(sr?.querySelectorAll('li') ?? [])].map((n) => n.textContent);
+    expect(listed).toEqual(skills.flatMap((group) => group.items));
+    for (const group of skills) {
+      expect(sr?.textContent).toContain(group.label);
+    }
+  });
+
+  test('drops the group labels from the visible line', () => {
+    const shown = home.querySelector('.stack__line')?.textContent ?? '';
+    for (const group of skills) {
+      expect(shown).not.toContain(group.label);
+    }
+  });
+
+  test('capitalises every entry, so the cycling line reads evenly', () => {
+    // One lowercase entry between two proper nouns reads as a mistake.
+    const lower = skills
+      .flatMap((group) => group.items)
+      .filter((item) => item[0] !== item[0].toUpperCase());
+    expect(lower).toEqual([]);
+  });
+
+  test('sits between the lede and the timeline', () => {
+    const nodes = [...home.querySelectorAll('.masthead, .stack, .tl')];
+    expect(nodes.map((n) => n.className.split(' ')[0])).toEqual([
+      'masthead',
+      'stack',
+      'tl',
+    ]);
   });
 });
 

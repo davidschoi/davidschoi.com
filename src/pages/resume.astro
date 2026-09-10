@@ -41,7 +41,7 @@ import '../styles/resume.css';
             skills.map((group) => (
               <div class="skill">
                 <h3 class="skill__label">{group.label}</h3>
-                <p class="skill__body">{group.body}</p>
+                <p class="skill__body">{group.items.join(', ')}</p>
               </div>
             ))
           }

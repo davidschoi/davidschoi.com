@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
+import Stack from '../components/Stack.astro';
 import Timeline from '../components/Timeline.astro';
 import timeline from '../data/timeline';
 import portrait from '../assets/david-illustration.png';
@@ -31,6 +32,8 @@ import '../styles/home.css';
           <p class="masthead__lede">{lede}</p>
         </div>
       </header>
+
+      <Stack />
 
       <Timeline items={timeline} />
 

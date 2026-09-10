@@ -1,7 +1,7 @@
 export const email = 'me@davidschoi.com';
 export const github = 'https://github.com/davidschoi';
 export const linkedin = 'https://linkedin.com/in/greatgumz';
-export const resumePdf = '/David-S-Choi-Resume.pdf';
+export const resumePdf = '/davidschoi-resume.pdf';
 
 export const name = 'David S Choi';
 export const role = 'Software Engineer';
