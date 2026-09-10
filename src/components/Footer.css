@@ -1,16 +1,13 @@
 .footer {
-  margin-top: 36px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-strong);
   display: flex;
   flex-wrap: wrap;
   gap: 10px 18px;
   align-items: baseline;
-  font-size: 14px;
-}
-
-.footer--ruled {
-  margin-top: 56px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule-strong);
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
 .footer__primary {
@@ -39,20 +36,35 @@
 /* Stack it and give every target a 44px touch box. */
 @media (max-width: 640px) {
   .footer {
+    margin-top: 40px;
     flex-direction: column;
     /* Content-width, so the links read as links rather than bars. */
     align-items: flex-start;
     gap: 12px;
   }
 
+  /* A lighter .button — same border, ground and mono, one step down in
+     padding and box height so it stays navigation, not the page's action. */
   .footer__primary {
-    min-height: 44px;
-    display: flex;
+    min-height: 38px;
+    display: inline-flex;
     align-items: center;
+    padding: 0 12px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--accent-border);
+    background: var(--accent-bg);
+    transition: border-color 0.15s ease;
   }
 
-  .footer--ruled {
-    margin-top: 40px;
+  .footer__primary:hover {
+    border-color: var(--accent);
+  }
+
+  /* The chip's own border is the affordance; link-quiet's rule would sit
+     inside it. */
+  .footer__primary::after {
+    display: none;
   }
 
   .footer__slash {

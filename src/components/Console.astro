@@ -1,0 +1,161 @@
+---
+import './Console.css';
+
+interface Props {
+  command: string;
+  // A label is only for the screen-reader copy — the line never shows one.
+  groups: { label?: string; items: string[] }[];
+  // Caps how many entries a set holds. Without it a set fills the line, which
+  // suits a stack; a short personal list reads better a couple at a time.
+  max?: number;
+}
+
+const { command, groups, max } = Astro.props;
+
+// Seeds the line for a script-blocked read; three entries clear 320px.
+const seed = groups
+  .flatMap((group) => group.items)
+  .slice(0, Math.min(max ?? 3, 3))
+  .join(' · ');
+---
+
+<div class="console" data-max={max}>
+  <div class="console__line" aria-hidden="true">
+    <span class="console__chevron">&gt;</span>
+    <span class="console__command">{command}</span>
+    <span class="console__readout">{seed}</span>
+    <span class="console__cursor"></span>
+  </div>
+
+  {/* The line cycles, so it can't be the accessible copy. */}
+  <div class="console__sr">
+    {
+      groups.map((group) => (
+        <>
+          {group.label && <p>{group.label}</p>}
+          <ul>
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('.console');
+    if (!root || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const readout = root.querySelector('.console__readout');
+    const entries = [...root.querySelectorAll('.console__sr li')].map(
+      (li) => li.textContent
+    );
+    if (!readout || entries.length === 0) return;
+
+    const SEP = ' · ';
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    // Monospace, so one measured character is every character.
+    function budget() {
+      const cs = getComputedStyle(readout);
+      const ctx = document.createElement('canvas').getContext('2d');
+      ctx.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      const charWidth = ctx.measureText('M'.repeat(50)).width / 50;
+      // Less the cursor and some air, so the text never meets the edge.
+      const room = root.getBoundingClientRect().right -
+        readout.getBoundingClientRect().left - 16;
+      return Math.max(8, Math.floor(room / charWidth));
+    }
+
+    const max = Number(root.dataset.max) || Infinity;
+
+    function paginate(width) {
+      const pages = [];
+      let page = [];
+      for (const entry of entries) {
+        const full =
+          page.length >= max || page.concat(entry).join(SEP).length > width;
+        if (page.length && full) {
+          pages.push(page.join(SEP));
+          page = [];
+        }
+        page.push(entry);
+      }
+      if (page.length) pages.push(page.join(SEP));
+      return pages;
+    }
+
+    // Background tabs clamp setTimeout to a second, smearing a pass across minutes.
+    function seen() {
+      if (!document.hidden) return Promise.resolve();
+      return new Promise((resolve) => {
+        document.addEventListener('visibilitychange', function onShow() {
+          if (document.hidden) return;
+          document.removeEventListener('visibilitychange', onShow);
+          resolve();
+        });
+      });
+    }
+
+    // A resize repaginates, so the run in flight has to know it is stale.
+    let run = 0;
+
+    async function cycle() {
+      const mine = ++run;
+      const pages = paginate(budget());
+      let i = 0;
+
+      // Carry on from what is already there, or the seed snaps back to one character.
+      if (!pages[0].startsWith(readout.textContent)) {
+        for (let c = readout.textContent.length - 1; c >= 0; c--) {
+          if (mine !== run) return;
+          readout.textContent = readout.textContent.slice(0, c);
+          await wait(20);
+        }
+      }
+
+      while (mine === run) {
+        await seen();
+        if (mine !== run) return;
+
+        const line = pages[i % pages.length];
+        const only = pages.length === 1;
+        const from = line.startsWith(readout.textContent)
+          ? readout.textContent.length
+          : 0;
+
+        for (let c = from + 1; c <= line.length; c++) {
+          if (mine !== run) return;
+          readout.textContent = line.slice(0, c);
+          await wait(45);
+        }
+
+        // Nothing to cycle to: rest on it rather than retyping it forever.
+        if (only) return;
+
+        await wait(1900);
+
+        for (let c = line.length - 1; c >= 0; c--) {
+          if (mine !== run) return;
+          readout.textContent = line.slice(0, c);
+          await wait(20);
+        }
+
+        await wait(220);
+        i++;
+      }
+    }
+
+    let resizing;
+    addEventListener('resize', () => {
+      clearTimeout(resizing);
+      resizing = setTimeout(cycle, 200);
+    });
+
+    // The fallback face measures differently, so pagination before it lands is wrong.
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(cycle);
+  })();
+</script>

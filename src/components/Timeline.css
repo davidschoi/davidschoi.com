@@ -40,7 +40,8 @@
 }
 
 .tl__title {
-  font-size: 16px;
+  font-family: var(--serif);
+  font-size: 17px;
 }
 
 .tl__title--work {
@@ -53,10 +54,13 @@
   color: var(--ink-soft);
 }
 
+/* The company's role line, set like the resume's — mono under a serif name. */
 .tl__detail {
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  margin-top: 3px;
+  margin-top: 4px;
 }
 
 @media (max-width: 640px) {
@@ -81,12 +85,12 @@
   }
 
   .tl__title {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .tl__detail {
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 11px;
+    line-height: 1.6;
     margin-top: 2px;
   }
 }

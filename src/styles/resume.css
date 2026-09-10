@@ -30,28 +30,12 @@
   letter-spacing: -0.01em;
 }
 
-.resume__download {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  text-decoration: none;
-  border: 1px solid var(--accent-border);
-  padding: 9px 14px;
-  background: var(--accent-bg);
-  white-space: nowrap;
-  transition: border-color 0.15s ease;
-}
-
-/* A box can't take the hairline, so the border firms up instead. */
-.resume__download:hover {
-  border-color: var(--accent);
-}
-
+/* The lede of its page — matches .masthead__lede, which the two already
+   agreed on at the mobile size. */
 .resume__summary {
   margin: 28px 0 0;
   font-family: var(--serif);
-  font-size: 20px;
+  font-size: 19px;
   line-height: 1.55;
   color: var(--ink-body);
   max-width: 54ch;
@@ -137,7 +121,9 @@
 }
 
 .job__role {
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -149,7 +135,7 @@
   display: flex;
   flex-direction: column;
   gap: 9px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink-soft);
   text-wrap: pretty;
@@ -181,14 +167,16 @@
 
 .skill__label {
   margin: 0;
-  font-size: 13px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
   font-weight: 500;
   color: var(--muted-mono);
 }
 
 .skill__body {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
   text-wrap: pretty;
@@ -200,14 +188,16 @@
 }
 
 .edu__detail {
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
   color: var(--muted);
   margin-top: 4px;
 }
 
 .resume__interests {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
   max-width: 46ch;
@@ -228,12 +218,6 @@
 
   .resume__title {
     font-size: 30px;
-  }
-
-  .resume__download {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
   }
 
   .resume__summary {

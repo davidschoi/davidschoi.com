@@ -1,0 +1,82 @@
+/* A Claude Code slash command standing in for a skills list. */
+.console {
+  margin: 32px 0 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.console__line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  /* One line always — wrapping would shunt the timeline mid-type. */
+  min-height: 1.6em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.console__chevron {
+  color: var(--faint);
+  user-select: none;
+}
+
+.console__command {
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.console__readout {
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+/* Full glyph height, ascender to descender (measured: 0.952em). A flex item
+   with no text synthesises its baseline from the border box, so it would grow
+   upwards off the cap line and margins can't move it — the transform drops it
+   the 0.127em that keeps it centred on the text. */
+.console__cursor {
+  flex: none;
+  width: 6px;
+  height: 0.95em;
+  margin-left: -2px;
+  transform: translateY(0.127em);
+  background: var(--accent);
+  animation: console-blink 1s step-end infinite;
+}
+
+@keyframes console-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* global.css clamps animations to 0.01ms, which strobes rather than stills. */
+@media (prefers-reduced-motion: reduce) {
+  .console__cursor {
+    animation: none;
+  }
+}
+
+.console__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .console {
+    margin-top: 26px;
+    font-size: 12px;
+  }
+}

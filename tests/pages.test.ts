@@ -2,8 +2,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { describe, expect, test } from 'vitest';
 import timeline from '../src/data/timeline';
-import { experience } from '../src/data/resume';
-import { github, location, role } from '../src/data/site';
+import { experience, skills } from '../src/data/resume';
+import { github, location, role, whoami } from '../src/data/site';
 
 // `npm test` builds first, so these assert the bytes that actually ship.
 function raw(file: string): string {
@@ -46,6 +46,13 @@ describe('home', () => {
 });
 
 describe('resume', () => {
+  test('lists each skill group from the same array the home console reads', () => {
+    const bodies = [...resume.querySelectorAll('.skill__body')].map((n) =>
+      n.textContent?.trim()
+    );
+    expect(bodies).toEqual(skills.map((group) => group.items.join(', ')));
+  });
+
   test('renders every job with its bullets', () => {
     const companies = [...resume.querySelectorAll('.job__company')].map((n) =>
       n.textContent?.trim()
@@ -58,8 +65,8 @@ describe('resume', () => {
   });
 
   test('offers the PDF as a download', () => {
-    const pdf = resume.querySelector('.resume__download');
-    expect(pdf?.getAttribute('href')).toBe('/David-S-Choi-Resume.pdf');
+    const pdf = resume.querySelector('a[download]');
+    expect(pdf?.getAttribute('href')).toBe('/davidschoi-resume.pdf');
     expect(pdf?.hasAttribute('download')).toBe(true);
   });
 });
@@ -82,6 +89,21 @@ describe('footer', () => {
   test('is shared, and its primary link points the other way on each page', () => {
     expect(home.querySelector('.footer__primary')?.getAttribute('href')).toBe('/resume');
     expect(resume.querySelector('.footer__primary')?.getAttribute('href')).toBe('/');
+  });
+
+  test('renders the same on every page, apart from where it points', () => {
+    // The pages read as one site or they don't; the footer is the seam.
+    const shape = (doc: Document) => {
+      const nav = doc.querySelector('.footer');
+      return {
+        classes: nav?.className,
+        links: [...(nav?.querySelectorAll('.footer__externals .link') ?? [])].map(
+          (a) => a.getAttribute('href')
+        ),
+        toggle: !!nav?.querySelector('.theme-toggle'),
+      };
+    };
+    expect(shape(home)).toEqual(shape(resume));
   });
 
   test('opens GitHub, LinkedIn and Email in a new tab, safely', () => {
@@ -127,6 +149,71 @@ describe('static output', () => {
   test('renders content into the HTML rather than an empty root', () => {
     expect(home.querySelectorAll('.tl__row').length).toBeGreaterThan(0);
     expect(home.querySelector('#root')).toBeNull();
+  });
+});
+
+describe('consoles', () => {
+  const consoleOn = (doc: Document) => doc.querySelector('.console');
+
+  test('the home page runs /whoami and the resume runs /stack', () => {
+    expect(home.querySelector('.console__command')?.textContent?.trim()).toBe('/whoami');
+    expect(resume.querySelector('.console__command')?.textContent?.trim()).toBe('/stack');
+  });
+
+  test('each seeds its line with entries that fit the narrowest screen', () => {
+    // What a reader sees with the script blocked.
+    expect(home.querySelector('.console__readout')?.textContent?.trim()).toBe(
+      whoami.slice(0, 1).join(' \u00b7 ')
+    );
+    expect(resume.querySelector('.console__readout')?.textContent?.trim()).toBe(
+      skills[0].items.slice(0, 3).join(' \u00b7 ')
+    );
+  });
+
+  test('each carries every entry for a screen reader', () => {
+    const listed = (doc: Document) =>
+      [...(consoleOn(doc)?.querySelectorAll('.console__sr li') ?? [])].map(
+        (n) => n.textContent
+      );
+    expect(listed(home)).toEqual(whoami);
+    expect(listed(resume)).toEqual(skills.flatMap((group) => group.items));
+  });
+
+  test('keeps the group labels out of the visible line', () => {
+    const shown = resume.querySelector('.console__line')?.textContent ?? '';
+    for (const group of skills) {
+      expect(shown).not.toContain(group.label);
+    }
+  });
+
+  test('capitalises every entry, so the cycling line reads evenly', () => {
+    // One lowercase entry between two proper nouns reads as a mistake.
+    const entries = [...skills.flatMap((group) => group.items), ...whoami];
+    expect(entries.filter((e) => e[0] !== e[0].toUpperCase())).toEqual([]);
+  });
+
+  test('/whoami sits between the lede and the timeline', () => {
+    const nodes = [...home.querySelectorAll('.masthead, .console, .tl')];
+    expect(nodes.map((n) => n.className.split(' ')[0])).toEqual([
+      'masthead',
+      'console',
+      'tl',
+    ]);
+  });
+
+  test('/stack sits under the summary, above Experience', () => {
+    const nodes = [
+      ...resume.querySelectorAll('.resume__summary, .console, .resume__section'),
+    ];
+    expect(nodes.slice(0, 3).map((n) => n.className.split(' ')[0])).toEqual([
+      'resume__summary',
+      'console',
+      'resume__section',
+    ]);
+  });
+
+  test('leaves the resume Skills prose in place', () => {
+    expect(resume.querySelectorAll('.skill__body').length).toBe(skills.length);
   });
 });
 

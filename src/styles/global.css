@@ -38,11 +38,11 @@
   --icon-moon: block;
   --icon-sun: none;
 
-  /* Type */
+  /* Type — three faces by role. Names are display, anything read at length is
+     serif, anything scanned rather than read is mono. */
   --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --serif: Newsreader, Georgia, 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,7 +79,9 @@ body {
   margin: 0;
   background: var(--canvas);
   color: var(--ink);
-  font-family: var(--sans);
+  /* Reading text is the default, so --display and --mono are the only two
+     deliberate deviations and nothing lands on a face by omission. */
+  font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -96,6 +98,34 @@ a:hover {
 .link {
   text-decoration: none;
   border-bottom: 1px solid var(--hairline);
+}
+
+/* A link carrying the weight of a button — one per page, for the one thing
+   that page wants you to do next. */
+.button {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent-border);
+  padding: 9px 14px;
+  background: var(--accent-bg);
+  white-space: nowrap;
+  transition: border-color 0.15s ease;
+}
+
+/* A box can't take the hairline, so the border firms up instead. */
+.button:hover {
+  border-color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 /* No rule at rest, so the pages keep their rhythm instead of stuttering

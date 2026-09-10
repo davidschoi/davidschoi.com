@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
+import Console from '../components/Console.astro';
 import Job from '../components/Job.astro';
 import {
   education,
@@ -24,10 +25,12 @@ import '../styles/resume.css';
 
       <div class="resume__head">
         <h1 class="resume__title">Resume</h1>
-        <a class="resume__download" href={resumePdf} download>Download PDF ↓</a>
+        <a class="button" href={resumePdf} download>Download PDF ↓</a>
       </div>
 
       <p class="resume__summary">{summary}</p>
+
+      <Console command="/stack" groups={skills} />
 
       <section class="resume__section">
         <h2 class="resume__label resume__label--stacked">Experience</h2>
@@ -41,7 +44,7 @@ import '../styles/resume.css';
             skills.map((group) => (
               <div class="skill">
                 <h3 class="skill__label">{group.label}</h3>
-                <p class="skill__body">{group.body}</p>
+                <p class="skill__body">{group.items.join(', ')}</p>
               </div>
             ))
           }
@@ -61,7 +64,7 @@ import '../styles/resume.css';
         <p class="resume__interests">{interests}</p>
       </section>
 
-      <Footer primary={{ href: '/', label: '← Home' }} ruled />
+      <Footer primary={{ href: '/', label: '← Home' }} />
     </div>
   </main>
 </Base>
