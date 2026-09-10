@@ -38,11 +38,11 @@
   --icon-moon: block;
   --icon-sun: none;
 
-  /* Type */
+  /* Type — three faces by role. Names are display, anything read at length is
+     serif, anything scanned rather than read is mono. */
   --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --serif: Newsreader, Georgia, 'Times New Roman', serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,7 +79,9 @@ body {
   margin: 0;
   background: var(--canvas);
   color: var(--ink);
-  font-family: var(--sans);
+  /* Reading text is the default, so --display and --mono are the only two
+     deliberate deviations and nothing lands on a face by omission. */
+  font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

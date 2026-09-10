@@ -35,7 +35,8 @@
   flex-wrap: wrap;
   gap: 10px 18px;
   align-items: baseline;
-  font-size: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
 .notfound__links .theme-toggle {
