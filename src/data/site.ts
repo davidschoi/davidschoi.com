@@ -10,13 +10,14 @@ export const location = 'Southern California';
 export const lede =
   'I build consumer web products. I use AI heavily and review everything it writes.';
 
-// The home console's answer. Ordered so the first three carry the line that
-// ships seeded.
 export const whoami = [
+  'David',
+  'Christian',
   'Husband',
   'Dad',
+  'Son',
+  'Brother',
   'Homie',
-  'Christian',
   'Cal Bear',
   'Burrito Connoisseur',
   'NBA Free Agent',
